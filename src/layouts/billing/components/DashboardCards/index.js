@@ -54,7 +54,7 @@ function DashboardCards() {
               //     </SoftTypography>
               //   </SoftBox>
               // }
-              height="20.25rem"
+              height="18rem"
               chart={gradientLineChartData}
             />
           </Grid>
