@@ -1,3 +1,5 @@
+import { BorderRight } from "@mui/icons-material";
+
 /**
 =========================================================
 * Hoscoo React - v4.0.1
@@ -27,26 +29,28 @@ function collapseItem(theme, ownerState) {
     display: "flex",
     alignItems: "center",
     width: "100%",
-    padding: `${pxToRem(10.8)} ${pxToRem(12.8)} ${pxToRem(10.8)} ${pxToRem(16)}`,
-    margin: `0 ${pxToRem(16)}`,
-    borderRadius: borderRadius.md,
+    // padding: `${pxToRem(10.8)} ${pxToRem(12.8)} ${pxToRem(10.8)} ${pxToRem(16)}`,
+    padding: `${pxToRem(5)} ${pxToRem(12.8)} ${pxToRem(5)} ${pxToRem(16)}`,
+    margin: `5px ${pxToRem(16)}`,
+    // borderRadius: borderRadius.sm,
     cursor: "pointer",
     userSelect: "none",
     whiteSpace: "nowrap",
-    boxShadow: active && transparentSidenav ? xxl : "none",
-    [breakpoints.up("xl")]: {
-      boxShadow: () => {
-        if (active) {
-          return transparentSidenav ? xxl : "none";
-        }
+    borderRight: active && transparentSidenav ? "2px solid #00bff9" : "",
+    // boxShadow: active && transparentSidenav ? xxl : "none",
+    // [breakpoints.up("xl")]: {
+    //   boxShadow: () => {
+    //     if (active) {
+    //       return transparentSidenav ? xxl : "none";
+    //     }
 
-        return "none";
-      },
-      transition: transitions.create("box-shadow", {
-        easing: transitions.easing.easeInOut,
-        duration: transitions.duration.shorter,
-      }),
-    },
+    //     return "none";
+    //   },
+    //   // transition: transitions.create("box-shadow", {
+    //   //   easing: transitions.easing.easeInOut,
+    //   //   duration: transitions.duration.shorter,
+    //   // }),
+    // },
   };
 }
 
@@ -72,7 +76,7 @@ function collapseIconBox(theme, ownerState) {
     borderRadius: borderRadius.md,
     display: "grid",
     placeItems: "center",
-    boxShadow: md,
+    // boxShadow: md,
     transition: transitions.create("margin", {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.standard,

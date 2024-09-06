@@ -42,6 +42,7 @@ import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 
 // Hoscoo React context
 import { useSoftUIController, setMiniSidenav } from "context";
+import { Typography } from "@mui/material";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useSoftUIController();
@@ -149,15 +150,18 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
           >
-            <SoftTypography component="h6" variant="button" fontWeight="medium">
+            <Typography component="h1" variant="button" sx={{ fontSize: "20px", color: "#7ab6ff" }}>
               {brandName}
-            </SoftTypography>
+            </Typography>
+            {/* <SoftTypography component="h3" variant="button" fontWeight="medium">
+              {brandName}
+            </SoftTypography> */}
           </SoftBox>
         </SoftBox>
       </SoftBox>
       <Divider />
       <List>{renderRoutes}</List>
-      <SoftBox pt={2} my={2} mx={2} mt="auto">
+      {/* <SoftBox pt={2} my={2} mx={2} mt="auto">
         <SidenavCard />
         <SoftBox mt={2}>
           <SoftButton
@@ -172,7 +176,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             upgrade to pro
           </SoftButton>
         </SoftBox>
-      </SoftBox>
+      </SoftBox> */}
     </SidenavRoot>
   );
 }
