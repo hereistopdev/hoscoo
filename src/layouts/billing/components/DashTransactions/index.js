@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import Card from "@mui/material/Card";
 // import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
@@ -5,11 +6,16 @@ import Icon from "@mui/material/Icon";
 // Hoscoo React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 
 // Billing page components
 import Transaction from "layouts/billing/components/Transaction";
+import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+import { position } from "stylis";
 
-function Transactions() {
+function DashTransactions() {
+  const { chart, items } = reportsBarChartData;
+
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2}>
@@ -101,6 +107,13 @@ function Transactions() {
             value="+ $ 2,500"
           />
           <Transaction
+            color="success"
+            icon="arrow_upward"
+            name="Hoscoo"
+            description="26 March 2020, at 08:30 AM"
+            value="+ $ 2,500"
+          />
+          <Transaction
             color="dark"
             icon="priority_high"
             name="Webflow"
@@ -109,8 +122,18 @@ function Transactions() {
           />
         </SoftBox>
       </SoftBox>
+      <ReportsBarChart
+        title="You recent transactions"
+        description={
+          <>
+            (<strong>+23%</strong>) than last week
+          </>
+        }
+        chart={chart}
+        // style={{ position: "absolute", bottom: "0px" }}
+      />
     </Card>
   );
 }
 
-export default Transactions;
+export default DashTransactions;

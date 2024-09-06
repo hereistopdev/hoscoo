@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
@@ -41,6 +25,16 @@ import OrderOverview from "layouts/dashboard/components/OrderOverview";
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
+import {
+  Input,
+  InputRounded,
+  OutputRounded,
+  SwipeLeft,
+  SwipeRight,
+  TableChart,
+} from "@mui/icons-material";
+import DashTransactions from "layouts/billing/components/DashTransactions";
+import DashboardCards from "layouts/billing/components/DashboardCards";
 
 function Dashboard() {
   const { size } = typography;
@@ -52,40 +46,39 @@ function Dashboard() {
       <SoftBox py={3}>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: "today's money" }}
-                count="$53,000"
-                percentage={{ color: "success", text: "+55%" }}
-                icon={{ color: "info", component: "paid" }}
-              />
+            <Grid item xs={12} lg={7}>
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={6} xl={12}>
+                  <MiniStatisticsCard
+                    title={{ text: "today's money" }}
+                    count="$53,000"
+                    percentage={{ color: "success", text: "+55%" }}
+                    icon={{ color: "info", component: "paid" }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={6}>
+                  <MiniStatisticsCard
+                    title={{ text: "Income" }}
+                    count="$2,300"
+                    percentage={{ color: "success", text: "+3%" }}
+                    icon={{ color: "info", component: <SwipeLeft /> }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={6}>
+                  <MiniStatisticsCard
+                    title={{ text: "Spending" }}
+                    count="$3,462"
+                    percentage={{ color: "error", text: "-2%" }}
+                    icon={{ color: "info", component: <SwipeRight /> }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} xl={12}>
+                  <DashboardCards />
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: "today's users" }}
-                count="2,300"
-                percentage={{ color: "success", text: "+3%" }}
-                icon={{ color: "info", component: "public" }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: "new clients" }}
-                count="+3,462"
-                percentage={{ color: "error", text: "-2%" }}
-                icon={{ color: "info", component: "emoji_events" }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              <MiniStatisticsCard
-                title={{ text: "sales" }}
-                count="$103,430"
-                percentage={{ color: "success", text: "+5%" }}
-                icon={{
-                  color: "info",
-                  component: "shopping_cart",
-                }}
-              />
+            <Grid item xs={12} lg={5}>
+              <DashTransactions />
             </Grid>
           </Grid>
         </SoftBox>
@@ -124,7 +117,7 @@ function Dashboard() {
                     <SoftTypography variant="button" color="text" fontWeight="medium">
                       4% more{" "}
                       <SoftTypography variant="button" color="text" fontWeight="regular">
-                        in 2021
+                        in 2024
                       </SoftTypography>
                     </SoftTypography>
                   </SoftBox>

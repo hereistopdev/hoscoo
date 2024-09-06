@@ -52,7 +52,7 @@ const authorsTableData = {
 
   rows: [
     {
-      author: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      author: <Author image={team2} name="John Michael" email="john@hoscoo.com" />,
       function: <Function job="Manager" org="Organization" />,
       status: (
         <SoftBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
@@ -75,7 +75,7 @@ const authorsTableData = {
       ),
     },
     {
-      author: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
+      author: <Author image={team3} name="Alexa Liras" email="alexa@hoscoo.com" />,
       function: <Function job="Programator" org="Developer" />,
       status: (
         <SoftBadge
@@ -104,7 +104,7 @@ const authorsTableData = {
       ),
     },
     {
-      author: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
+      author: <Author image={team4} name="Laurent Perrier" email="laurent@hoscoo.com" />,
       function: <Function job="Executive" org="Projects" />,
       status: (
         <SoftBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
@@ -127,7 +127,7 @@ const authorsTableData = {
       ),
     },
     {
-      author: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
+      author: <Author image={team3} name="Michael Levi" email="michael@hoscoo.com" />,
       function: <Function job="Programator" org="Developer" />,
       status: (
         <SoftBadge variant="gradient" badgeContent="online" color="success" size="xs" container />
@@ -150,7 +150,7 @@ const authorsTableData = {
       ),
     },
     {
-      author: <Author image={team2} name="Richard Gran" email="richard@creative-tim.com" />,
+      author: <Author image={team2} name="Richard Gran" email="richard@hoscoo.com" />,
       function: <Function job="Manager" org="Executive" />,
       status: (
         <SoftBadge
@@ -179,7 +179,7 @@ const authorsTableData = {
       ),
     },
     {
-      author: <Author image={team4} name="Miriam Eric" email="miriam@creative-tim.com" />,
+      author: <Author image={team4} name="Miriam Eric" email="miriam@hoscoo.com" />,
       function: <Function job="Programtor" org="Developer" />,
       status: (
         <SoftBadge
