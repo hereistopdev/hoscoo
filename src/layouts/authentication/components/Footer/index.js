@@ -3,10 +3,10 @@
 * Hoscoo React - v4.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.hoscoo.com
+* Copyright 2024 Hoscoo (https://www.hoscoo.com)
 
-Coded by www.creative-tim.com
+Coded by www.hoscoo.com
 
  =========================================================
 
@@ -86,7 +86,7 @@ function Footer() {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <SoftTypography variant="body2" color="secondary">
-            Copyright &copy; 2021 Soft by Creative Tim.
+            Copyright &copy; 2021 Soft by Hoscoo.
           </SoftTypography>
         </Grid>
       </Grid>

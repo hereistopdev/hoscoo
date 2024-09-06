@@ -1,14 +1,15 @@
 import { BorderRight } from "@mui/icons-material";
+import { useEffect } from "react";
 
 /**
 =========================================================
 * Hoscoo React - v4.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.hoscoo.com
+* Copyright 2024 Hoscoo (https://www.hoscoo.com)
 
-Coded by www.creative-tim.com
+Coded by www.hoscoo.com
 
  =========================================================
 
@@ -16,9 +17,9 @@ Coded by www.creative-tim.com
 */
 function collapseItem(theme, ownerState) {
   const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav } = ownerState;
+  const { active, transparentSidenav, color } = ownerState;
 
-  const { dark, white, text, transparent } = palette;
+  const { dark, white, text, transparent, info, light, gradients } = palette;
   const { xxl } = boxShadows;
   const { borderRadius } = borders;
   const { pxToRem } = functions;
@@ -36,7 +37,14 @@ function collapseItem(theme, ownerState) {
     cursor: "pointer",
     userSelect: "none",
     whiteSpace: "nowrap",
-    borderRight: active && transparentSidenav ? "2px solid #00bff9" : "",
+    borderRight: active && transparentSidenav ? "2px solid" : "",
+    borderColor: () => {
+      if (active) {
+        return color === "default" ? info.main : palette[color]?.main;
+      }
+
+      return light.main;
+    },
     // boxShadow: active && transparentSidenav ? xxl : "none",
     // [breakpoints.up("xl")]: {
     //   boxShadow: () => {

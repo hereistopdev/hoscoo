@@ -3,10 +3,10 @@
 * Hoscoo React - v4.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.hoscoo.com
+* Copyright 2024 Hoscoo (https://www.hoscoo.com)
 
-Coded by www.creative-tim.com
+Coded by www.hoscoo.com
 
  =========================================================
 
@@ -112,7 +112,7 @@ function Transactions() {
           <Transaction
             color="success"
             icon="arrow_upward"
-            name="Creative Tim"
+            name="Hoscoo"
             description="26 March 2020, at 08:30 AM"
             value="+ $ 2,500"
           />

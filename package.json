@@ -1,9 +1,9 @@
 {
   "name": "soft-ui-dashboard-react",
   "version": "4.0.1",
-  "author": "Creative Tim",
-  "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
-  "description": "ReactJS version of Hoscoo by Creative Tim",
+  "author": "Hoscoo",
+  "license": "SEE LICENSE IN <https://www.hoscoo.com/license>",
+  "description": "ReactJS version of Hoscoo by Hoscoo",
   "bugs": {
     "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
   },

@@ -3,10 +3,10 @@
 * Hoscoo React - v4.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.hoscoo.com
+* Copyright 2024 Hoscoo (https://www.hoscoo.com)
 
-Coded by www.creative-tim.com
+Coded by www.hoscoo.com
 
  =========================================================
 
@@ -198,11 +198,11 @@ function Configurator() {
 
         <Divider />
 
-        <SoftBox mt={3} mb={2}>
+        {/* <SoftBox mt={3} mb={2}>
           <SoftBox mb={2}>
             <SoftButton
               component={Link}
-              href="https://www.creative-tim.com/product/soft-ui-dashboard-react"
+              href="https://www.hoscoo.com"
               target="_blank"
               rel="noreferrer"
               color="dark"
@@ -214,7 +214,7 @@ function Configurator() {
           </SoftBox>
           <SoftButton
             component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/soft-ui-dashboard/"
+            href="https://www.hoscoo.com/learning-lab/react/quick-start/soft-ui-dashboard/"
             target="_blank"
             rel="noreferrer"
             color="dark"
@@ -223,8 +223,8 @@ function Configurator() {
           >
             view documentation
           </SoftButton>
-        </SoftBox>
-        <SoftBox display="flex" justifyContent="center">
+        </SoftBox> */}
+        {/* <SoftBox display="flex" justifyContent="center">
           <a
             className="github-button"
             href="https://github.com/creativetimofficial/soft-ui-dashboard-react"
@@ -245,7 +245,7 @@ function Configurator() {
             <SoftBox mr={1.5}>
               <SoftButton
                 component={Link}
-                href="//twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20React%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23react%23mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard-react"
+                href="//twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20React%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23react%23mui&url=https%3A%2F%2Fwww.hoscoo.com%2Fproduct%2Fsoft-ui-dashboard-react"
                 target="_blank"
                 rel="noreferrer"
                 color="dark"
@@ -256,7 +256,7 @@ function Configurator() {
             </SoftBox>
             <SoftButton
               component={Link}
-              href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard-react"
+              href="https://www.facebook.com/sharer/sharer.php?u=https://www.hoscoo.com"
               target="_blank"
               rel="noreferrer"
               color="dark"
@@ -265,7 +265,7 @@ function Configurator() {
               &nbsp; Share
             </SoftButton>
           </SoftBox>
-        </SoftBox>
+        </SoftBox> */}
       </SoftBox>
     </ConfiguratorRoot>
   );

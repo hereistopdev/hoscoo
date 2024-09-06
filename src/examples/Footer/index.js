@@ -3,10 +3,10 @@
 * Hoscoo React - v4.0.1
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.hoscoo.com
+* Copyright 2024 Hoscoo (https://www.hoscoo.com)
 
-Coded by www.creative-tim.com
+Coded by www.hoscoo.com
 
  =========================================================
 
@@ -99,12 +99,12 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: "https://www.hoscoo.com/", name: "Hoscoo" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    { href: "https://www.hoscoo.com/", name: "Hoscoo" },
+    { href: "https://www.hoscoo.com/presentation", name: "About Us" },
+    { href: "https://www.hoscoo.com/blog", name: "Blog" },
+    { href: "https://www.hoscoo.com/license", name: "License" },
   ],
 };
 
