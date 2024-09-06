@@ -65,6 +65,9 @@ import {
   Payment,
   TableChartTwoTone,
 } from "@mui/icons-material";
+import USAFlag from "examples/Icons/Country/USA";
+import EUFlag from "examples/Icons/Country/EU";
+import UKFlag from "examples/Icons/Country/UK";
 
 const routes = [
   {
@@ -181,28 +184,31 @@ const routes = [
     name: "1000.000 USD",
     key: "usd",
     route: "/usd",
-    icon: <AttachMoney size="12px" />,
+    icon: <USAFlag size="24px" />,
     component: <Profile />,
+    noCollapse: true,
+    noback: true,
+  },
+  {
+    type: "collapse",
+    name: "314.200 EUR",
+    key: "euro",
+    route: "/euro",
+    icon: <EUFlag size="24px" />,
+    component: <Profile />,
+    noback: true,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "314.200 CAD",
-    key: "cad",
-    route: "/cad",
-    icon: <AttachMoneyRounded size="12px" />,
+    name: "113.200 GBP",
+    key: "gbp",
+    route: "/gbp",
+    icon: <UKFlag size="24px" />,
     component: <Profile />,
+    noback: true,
     noCollapse: true,
   },
-  // {
-  //   type: "collapse",
-  //   name: "113.200 GBP",
-  //   key: "gbp",
-  //   route: "/gbp",
-  //   icon: <AttachMoneyRounded size="12px" />,
-  //   component: <Profile />,
-  //   noCollapse: true,
-  // },
   {
     type: "collapse",
     name: "Open a balance",

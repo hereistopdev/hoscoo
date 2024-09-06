@@ -64,7 +64,7 @@ function collapseItem(theme, ownerState) {
 
 function collapseIconBox(theme, ownerState) {
   const { palette, transitions, breakpoints, boxShadows, borders, functions } = theme;
-  const { active, transparentSidenav, color } = ownerState;
+  const { active, transparentSidenav, color, noback } = ownerState;
 
   const { white, info, light, gradients } = palette;
   const { md } = boxShadows;
@@ -103,6 +103,8 @@ function collapseIconBox(theme, ownerState) {
         } else {
           background = palette[color].main;
         }
+
+        if (noback) background = "#ffffff00";
 
         return background;
       },

@@ -86,7 +86,7 @@ function Footer() {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <SoftTypography variant="body2" color="secondary">
-            Copyright &copy; 2021 Soft by Hoscoo.
+            Copyright &copy; 2024 Soft by Hoscoo.
           </SoftTypography>
         </Grid>
       </Grid>

@@ -36,8 +36,19 @@ import {
 
 // Hoscoo React context
 import { useSoftUIController } from "context";
+import { useEffect } from "react";
 
-function SidenavCollapse({ color, icon, name, children, active, noCollapse, open, ...rest }) {
+function SidenavCollapse({
+  color,
+  icon,
+  name,
+  children,
+  active,
+  noCollapse,
+  open,
+  noback = false,
+  ...rest
+}) {
   const [controller] = useSoftUIController();
   const { miniSidenav, transparentSidenav } = controller;
 
@@ -49,7 +60,7 @@ function SidenavCollapse({ color, icon, name, children, active, noCollapse, open
           sx={(theme) => collapseItem(theme, { active, transparentSidenav, color })}
         >
           <ListItemIcon
-            sx={(theme) => collapseIconBox(theme, { active, transparentSidenav, color })}
+            sx={(theme) => collapseIconBox(theme, { active, transparentSidenav, color, noback })}
           >
             {typeof icon === "string" ? (
               <Icon sx={(theme) => collapseIcon(theme, { active })}>{icon}</Icon>
@@ -80,6 +91,7 @@ SidenavCollapse.defaultProps = {
   noCollapse: false,
   children: false,
   open: false,
+  noback: false,
 };
 
 // Typechecking props for the SidenavCollapse
@@ -91,6 +103,7 @@ SidenavCollapse.propTypes = {
   active: PropTypes.bool,
   noCollapse: PropTypes.bool,
   open: PropTypes.bool,
+  noback: PropTypes.bool,
 };
 
 export default SidenavCollapse;
