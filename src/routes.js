@@ -44,6 +44,7 @@ import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import ForgetPass from "layouts/authentication/forget-pass";
 
 // Hoscoo React icons
 import Shop from "examples/Icons/Shop";
@@ -244,6 +245,15 @@ const routes = [
     route: "/authentication/sign-up",
     icon: <SpaceShip size="12px" />,
     component: <SignUp />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Forget Password",
+    key: "forget-pass",
+    route: "/authentication/forget-pass",
+    icon: <Document size="12px" />,
+    component: <ForgetPass />,
     noCollapse: true,
   },
 ];

@@ -39,13 +39,25 @@ function SignIn() {
           </SoftBox>
           <SoftInput type="email" placeholder="Email" />
         </SoftBox>
-        <SoftBox mb={2}>
+        <SoftBox mb={1}>
           <SoftBox mb={1} ml={0.5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold">
               Password
             </SoftTypography>
           </SoftBox>
           <SoftInput type="password" placeholder="Password" />
+        </SoftBox>
+        <SoftBox mb={1}>
+          <SoftTypography
+            component={Link}
+            to="/authentication/forget-pass"
+            variant="button"
+            color="info"
+            fontWeight="medium"
+            textGradient
+          >
+            Forgot password?
+          </SoftTypography>
         </SoftBox>
         <SoftBox display="flex" alignItems="center">
           <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -58,7 +70,8 @@ function SignIn() {
             &nbsp;&nbsp;Remember me
           </SoftTypography>
         </SoftBox>
-        <SoftBox mt={4} mb={1}>
+
+        <SoftBox mt={3} mb={1}>
           <SoftButton variant="gradient" color="info" fullWidth>
             sign in
           </SoftButton>
