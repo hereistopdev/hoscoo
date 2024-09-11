@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // react-router-dom components
@@ -32,6 +17,7 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
+import Socials from "../components/Socials";
 
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(true);
@@ -76,6 +62,14 @@ function SignIn() {
           <SoftButton variant="gradient" color="info" fullWidth>
             sign in
           </SoftButton>
+        </SoftBox>
+        <SoftBox p={3} mb={1} textAlign="center">
+          <SoftTypography variant="h5" fontWeight="medium">
+            Sign In with
+          </SoftTypography>
+        </SoftBox>
+        <SoftBox mb={2}>
+          <Socials />
         </SoftBox>
         <SoftBox mt={3} textAlign="center">
           <SoftTypography variant="button" color="text" fontWeight="regular">

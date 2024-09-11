@@ -1,26 +1,34 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// Hoscoo React components
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { googleProvider } from "firebaseConfig";
+import { auth } from "firebaseConfig";
+import { appleProvider } from "firebaseConfig";
+import { facebookProvider } from "firebaseConfig";
+import { AuthContext } from "store/AuthContext";
 
 function Socials() {
+  const [error, setError] = useState("");
+
+  const { user, loading, signIn } = useContext(AuthContext);
+
+  const signInWithProvider = async (provider) => {
+    try {
+      await signIn((auth) => signInWithPopup(auth, provider));
+    } catch (err) {
+      console.error("Sign-in error:", err.message);
+    }
+  };
+
   return (
     <SoftBox display="flex" justifyContent="center">
-      <SoftButton variant="outlined" color="light">
+      <SoftButton
+        variant="outlined"
+        color="light"
+        onClick={() => signInWithProvider(facebookProvider)}
+      >
         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(3.000000, 3.000000)" fillRule="nonzero">
@@ -34,7 +42,11 @@ function Socials() {
         </svg>
       </SoftButton>
       <SoftBox px={1}>
-        <SoftButton variant="outlined" color="light">
+        <SoftButton
+          variant="outlined"
+          color="light"
+          onClick={() => signInWithProvider(appleProvider)}
+        >
           <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <g transform="translate(7.000000, 0.564551)" fill="#000000" fillRule="nonzero">
@@ -44,7 +56,11 @@ function Socials() {
           </svg>
         </SoftButton>
       </SoftBox>
-      <SoftButton variant="outlined" color="light">
+      <SoftButton
+        variant="outlined"
+        color="light"
+        onClick={() => signInWithProvider(googleProvider)}
+      >
         <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g transform="translate(3.000000, 2.000000)" fillRule="nonzero">

@@ -35,10 +35,18 @@ import {
 } from "@mui/icons-material";
 import DashTransactions from "layouts/billing/components/DashTransactions";
 import DashboardCards from "layouts/billing/components/DashboardCards";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "store/AuthContext";
 
 function Dashboard() {
   const { size } = typography;
   const { chart, items } = reportsBarChartData;
+
+  const { user, loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("User info: ", user);
+  }, [user]);
 
   return (
     <DashboardLayout>

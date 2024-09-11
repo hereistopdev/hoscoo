@@ -17,7 +17,7 @@ import Footer from "layouts/authentication/components/Footer";
 function BasicLayout({ title, description, image, children }) {
   return (
     <PageLayout>
-      <DefaultNavbar
+      {/* <DefaultNavbar
         action={{
           type: "external",
           route: "https://hoscoo.com",
@@ -25,7 +25,7 @@ function BasicLayout({ title, description, image, children }) {
         }}
         transparent
         light
-      />
+      /> */}
       <SoftBox
         width="calc(100% - 2rem)"
         minHeight="50vh"
@@ -68,7 +68,7 @@ function BasicLayout({ title, description, image, children }) {
           </Grid>
         </Grid>
       </SoftBox>
-      <Footer />
+      {/* <Footer /> */}
     </PageLayout>
   );
 }
