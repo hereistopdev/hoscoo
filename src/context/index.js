@@ -50,6 +50,9 @@ function reducer(state, action) {
     case "OPEN_CONFIGURATOR": {
       return { ...state, openConfigurator: action.value };
     }
+    case "OPEN_CARD_DETAIL": {
+      return { ...state, openCardDetail: action.value };
+    }
     case "DIRECTION": {
       return { ...state, direction: action.value };
     }
@@ -71,6 +74,7 @@ function SoftUIControllerProvider({ children }) {
     transparentNavbar: true,
     fixedNavbar: true,
     openConfigurator: false,
+    openCardDetail: false,
     direction: "ltr",
     layout: "dashboard",
   };
@@ -105,6 +109,7 @@ const setSidenavColor = (dispatch, value) => dispatch({ type: "SIDENAV_COLOR", v
 const setTransparentNavbar = (dispatch, value) => dispatch({ type: "TRANSPARENT_NAVBAR", value });
 const setFixedNavbar = (dispatch, value) => dispatch({ type: "FIXED_NAVBAR", value });
 const setOpenConfigurator = (dispatch, value) => dispatch({ type: "OPEN_CONFIGURATOR", value });
+const setOpenCardDetail = (dispatch, value) => dispatch({ type: "OPEN_CARD_DETAIL", value });
 const setDirection = (dispatch, value) => dispatch({ type: "DIRECTION", value });
 const setLayout = (dispatch, value) => dispatch({ type: "LAYOUT", value });
 
@@ -117,6 +122,7 @@ export {
   setTransparentNavbar,
   setFixedNavbar,
   setOpenConfigurator,
+  setOpenCardDetail,
   setDirection,
   setLayout,
 };

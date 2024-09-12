@@ -15,6 +15,10 @@ import borders from "assets/theme/base/borders";
 import typography from "assets/theme/base/typography";
 import { Box, Typography } from "@mui/material";
 
+import CardDetail from "examples/CardDetail";
+
+import { useSoftUIController, setOpenCardDetail } from "context";
+
 const cardData = [
   {
     img: "brands/mastercard.png",
@@ -47,6 +51,13 @@ function CardList() {
 
   const { size } = typography;
 
+  const [controller, dispatch] = useSoftUIController();
+  const { openCardDetail } = controller;
+
+  const handleCardDetail = () => {
+    setOpenCardDetail(dispatch, !openCardDetail);
+  };
+
   return (
     <Card id="delete-account">
       <SoftBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
@@ -62,7 +73,8 @@ function CardList() {
         <Grid container spacing={3}>
           {cardData.map((card) => {
             return (
-              <Grid item xs={12} md={12} key={card.cardName}>
+              <Grid item xs={12} md={12} key={card.cardName} onClick={handleCardDetail}>
+                <CardDetail />
                 <SoftBox
                   border={`${borderWidth[1]} solid ${borderColor}`}
                   borderRadius="lg"
@@ -70,6 +82,12 @@ function CardList() {
                   justifyContent="space-between"
                   alignItems="center"
                   p={3}
+                  sx={{
+                    cursor: "pointer",
+                    "&:hover": {
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                    },
+                  }}
                 >
                   <SoftBox component="img" src={card.img} alt="master card" width="10%" mr={2} />
                   <SoftBox>

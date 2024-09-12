@@ -6,6 +6,9 @@ import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
+import CardDetail from "examples/CardDetail";
+
+import { useSoftUIController, setOpenCardDetail } from "context";
 
 // Hoscoo React base styles
 import borders from "assets/theme/base/borders";
@@ -49,6 +52,13 @@ function BankList() {
   const { borderWidth, borderColor } = borders;
   const { size } = typography;
 
+  const [controller, dispatch] = useSoftUIController();
+  const { openCardDetail } = controller;
+
+  const handleCardDetail = () => {
+    setOpenCardDetail(dispatch, !openCardDetail);
+  };
+
   return (
     <Card id="delete-account">
       <SoftBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">
@@ -64,7 +74,8 @@ function BankList() {
         <Grid container spacing={3}>
           {bankData.map((bank) => {
             return (
-              <Grid item xs={12} md={12} key={bank.bankName}>
+              <Grid item xs={12} md={12} key={bank.bankName} onClick={handleCardDetail}>
+                <CardDetail />
                 <SoftBox
                   border={`${borderWidth[1]} solid ${borderColor}`}
                   borderRadius="lg"
@@ -72,6 +83,12 @@ function BankList() {
                   justifyContent="space-between"
                   alignItems="center"
                   p={3}
+                  sx={{
+                    cursor: "pointer",
+                    "&:hover": {
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                    },
+                  }}
                 >
                   <SoftBox component="img" src={bank.img} alt="master card" width="10%" mr={2} />
                   <SoftBox>
