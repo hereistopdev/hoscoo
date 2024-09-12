@@ -51,7 +51,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
 
-  const { user } = useContext(AuthContext);
+  const { user, signOut } = useContext(AuthContext);
 
   useEffect(() => {
     console.log("Topnav user info", user);
@@ -148,12 +148,22 @@ function DashboardNavbar({ absolute, light, isMini }) {
             <SoftBox color={light ? "white" : "inherit"}>
               {user ? (
                 <IconButton sx={navbarIconButton}>
-                  <img
-                    src={user.photoURL}
-                    width={20}
-                    height={20}
-                    style={{ borderRadius: "100%" }}
-                  />
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: "100%" }}
+                    />
+                  ) : (
+                    <Icon
+                      sx={({ palette: { dark, white } }) => ({
+                        color: light ? white.main : dark.main,
+                      })}
+                    >
+                      account_circle
+                    </Icon>
+                  )}
                   <SoftTypography
                     variant="button"
                     fontWeight="medium"
@@ -211,6 +221,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
               </IconButton>
+
+              <IconButton
+                size="small"
+                color="inherit"
+                sx={navbarIconButton}
+                aria-controls="sign-out"
+                aria-haspopup="true"
+                variant="contained"
+                onClick={signOut}
+              >
+                <Icon className={light ? "text-white" : "text-dark"}>logout</Icon>
+              </IconButton>
               {renderMenu()}
             </SoftBox>
           </SoftBox>
@@ -220,14 +242,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   );
 }
 
-// Setting default values for the props of DashboardNavbar
 DashboardNavbar.defaultProps = {
   absolute: false,
   light: false,
   isMini: false,
 };
 
-// Typechecking props for the DashboardNavbar
 DashboardNavbar.propTypes = {
   absolute: PropTypes.bool,
   light: PropTypes.bool,

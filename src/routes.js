@@ -70,6 +70,7 @@ import {
 import USAFlag from "examples/Icons/Country/USA";
 import EUFlag from "examples/Icons/Country/EU";
 import UKFlag from "examples/Icons/Country/UK";
+import ResetPassword from "layouts/authentication/reset-password";
 
 const routes = [
   {
@@ -80,6 +81,7 @@ const routes = [
     icon: <Shop size="12px" />,
     component: <Dashboard />,
     noCollapse: true,
+    protected: true,
   },
   {
     type: "collapse",
@@ -97,6 +99,7 @@ const routes = [
     route: "/cards",
     icon: <CreditCard size="12px" />,
     component: <Billing />,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -106,6 +109,7 @@ const routes = [
     route: "/transactions",
     icon: <TableChartTwoTone size="12px" />,
     component: <Tables />,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -115,6 +119,7 @@ const routes = [
     route: "/payment",
     icon: <Payment size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -124,6 +129,7 @@ const routes = [
     route: "/invoicing",
     icon: <DocumentScanner size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -133,6 +139,7 @@ const routes = [
     route: "/trading",
     icon: <CurrencyExchange size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -142,6 +149,7 @@ const routes = [
     route: "/reports",
     icon: <AutoGraph size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   // {
@@ -189,6 +197,7 @@ const routes = [
     icon: <USAFlag size="24px" />,
     component: <Profile />,
     noCollapse: true,
+    protected: true,
     noback: true,
   },
   {
@@ -199,6 +208,7 @@ const routes = [
     icon: <EUFlag size="24px" />,
     component: <Profile />,
     noback: true,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -209,6 +219,7 @@ const routes = [
     icon: <UKFlag size="24px" />,
     component: <Profile />,
     noback: true,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -218,6 +229,7 @@ const routes = [
     route: "/openbalance",
     icon: <Add size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
@@ -228,6 +240,7 @@ const routes = [
     route: "/profile",
     icon: <CustomerSupport size="12px" />,
     component: <></>,
+    protected: true,
     noCollapse: true,
   },
   {
@@ -237,6 +250,7 @@ const routes = [
     route: "/authentication/sign-in",
     icon: <Document size="12px" />,
     component: <SignIn />,
+    protected: false,
     noCollapse: true,
   },
   {
@@ -246,6 +260,7 @@ const routes = [
     route: "/authentication/sign-up",
     icon: <SpaceShip size="12px" />,
     component: <SignUp />,
+    protected: false,
     noCollapse: true,
   },
   {
@@ -255,6 +270,17 @@ const routes = [
     route: "/authentication/forget-pass",
     icon: <Document size="12px" />,
     component: <ForgetPass />,
+    protected: false,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Reset Password",
+    key: "reset-password",
+    route: "/reset-password",
+    icon: <Document size="12px" />,
+    component: <ResetPassword />,
+    protected: false,
     noCollapse: true,
   },
 ];

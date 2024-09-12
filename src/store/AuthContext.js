@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 import { auth } from "../firebaseConfig"; // Import your Firebase auth instance
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,22 +14,10 @@ const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Subscribe to Firebase auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    // Clean up the subscription on unmount
-    return () => unsubscribe();
-  }, []);
-
   const signIn = async (provider) => {
     setLoading(true);
     try {
       const result = await provider(auth);
-      console.log(result);
       setUser(result.user);
       navigate("/dashboard");
     } catch (error) {
@@ -52,7 +40,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, setUser }}>
       {children}
     </AuthContext.Provider>
   );

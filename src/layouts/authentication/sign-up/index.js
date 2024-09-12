@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
@@ -27,8 +27,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Button } from "@mui/material";
+import axios from "axios";
+import { AuthContext } from "store/AuthContext";
+import { signUp } from "services/api";
 
 function SignUp() {
+  const { setUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [agreement, setAgremment] = useState(true);
@@ -42,24 +47,37 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const signUp = async () => {
-    console.log(name, email, password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     setLoading(true);
+
     try {
-      const response = await fetch("http://localhost:3001/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      console.log("Sign Up successful:", data);
+      const response = await signUp(name, email, password);
+
+      if (response.data.token) {
+        setSuccess("Signup successful!"); // Or use response.data.message if you have one
+        // You might want to store the token and userId in localStorage or state
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
+        setUser({
+          displayName: response.data.name,
+          email: response.data.email,
+          photoURL: undefined,
+        });
+      }
+
+      setEmail("");
+      setPassword("");
+      setName(""); // Clear name field if needed
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data.message || "Signup failed");
     } finally {
       setLoading(false);
+      navigate("/dashboard");
     }
   };
 
@@ -119,12 +137,13 @@ function SignUp() {
               </SoftTypography>
             </SoftBox>
             <SoftBox mt={4} mb={1}>
-              <SoftButton variant="gradient" color="dark" fullWidth onClick={signUp}>
+              <SoftButton variant="gradient" color="dark" fullWidth onClick={handleSubmit}>
                 {lodaing ? "wait..." : "sign up"}
               </SoftButton>
 
               {token && <p>Authenticated as UID: {token}</p>}
               {error && <p>Error: {error}</p>}
+              {success && <p style={{ color: "green" }}>{success}</p>}
             </SoftBox>
             <SoftBox mt={3} textAlign="center">
               <SoftTypography variant="button" color="text" fontWeight="regular">

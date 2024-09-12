@@ -33,6 +33,8 @@ import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "contex
 // Images
 import brand from "assets/images/logo-ct.png";
 import { AuthProvider } from "store/AuthContext";
+import useAuth from "store/useAuth";
+import RouteList from "RouteList";
 
 export default function App() {
   const [controller, dispatch] = useSoftUIController();
@@ -40,6 +42,9 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
+
+  // const { user } = useAuth();
+  const user = undefined;
 
   // Cache for the rtl
   useMemo(() => {
@@ -81,19 +86,6 @@ export default function App() {
     document.scrollingElement.scrollTop = 0;
   }, [pathname]);
 
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
-
-      if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
-      }
-
-      return null;
-    });
-
   const configsButton = (
     <SoftBox
       display="flex"
@@ -119,8 +111,32 @@ export default function App() {
   );
 
   return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={themeRTL}>
+    <AuthProvider>
+      <CacheProvider value={rtlCache}>
+        <ThemeProvider theme={themeRTL}>
+          <CssBaseline />
+          {layout === "dashboard" && (
+            <>
+              <Sidenav
+                color={sidenavColor}
+                brand={brand}
+                brandName="Hoscoo"
+                routes={routes}
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
+              />
+              <Configurator />
+              {configsButton}
+            </>
+          )}
+          {layout === "vr" && <Configurator />}
+          <RouteList routes={routes} />
+        </ThemeProvider>
+      </CacheProvider>
+    </AuthProvider>
+  ) : (
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         {layout === "dashboard" && (
           <>
@@ -137,36 +153,8 @@ export default function App() {
           </>
         )}
         {layout === "vr" && <Configurator />}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
+        <RouteList routes={routes} />
       </ThemeProvider>
-    </CacheProvider>
-  ) : (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brand}
-            brandName="Hoscoo"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {configsButton}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <AuthProvider>
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
-        </Routes>
-      </AuthProvider>
-    </ThemeProvider>
+    </AuthProvider>
   );
 }
