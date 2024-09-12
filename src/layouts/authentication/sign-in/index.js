@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Switch from "@mui/material/Switch";
@@ -18,11 +18,56 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 // Images
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 import Socials from "../components/Socials";
+import axios from "axios";
+import { AuthContext } from "store/AuthContext";
 
 function SignIn() {
+  const { setUser } = useContext(AuthContext);
+
   const [rememberMe, setRememberMe] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
+    setLoading(true);
+
+    try {
+      const response = await axios.post("http://localhost:5000/auth/signin", {
+        email,
+        password,
+      });
+
+      console.log(response.data);
+      if (response.data.token) {
+        // setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
+        setUser({
+          displayName: response.data.name,
+          email: response.data.email,
+          photoURL: undefined,
+        });
+        navigate("/dashboard");
+      }
+
+      setEmail("");
+      setPassword("");
+      setName(""); // Clear name field if needed
+    } catch (err) {
+      console.log(err);
+      setError(err.response?.data.message || "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <CoverLayout
@@ -37,7 +82,7 @@ function SignIn() {
               Email
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="email" placeholder="Email" />
+          <SoftInput type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
         </SoftBox>
         <SoftBox mb={1}>
           <SoftBox mb={1} ml={0.5}>
@@ -45,7 +90,11 @@ function SignIn() {
               Password
             </SoftTypography>
           </SoftBox>
-          <SoftInput type="password" placeholder="Password" />
+          <SoftInput
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </SoftBox>
         <SoftBox mb={1}>
           <SoftTypography
@@ -70,9 +119,9 @@ function SignIn() {
             &nbsp;&nbsp;Remember me
           </SoftTypography>
         </SoftBox>
-
+        <SoftTypography>{error && error}</SoftTypography>
         <SoftBox mt={3} mb={1}>
-          <SoftButton variant="gradient" color="info" fullWidth>
+          <SoftButton variant="gradient" color="info" fullWidth onClick={handleSubmit}>
             sign in
           </SoftButton>
         </SoftBox>
