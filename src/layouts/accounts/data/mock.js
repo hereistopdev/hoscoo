@@ -21,6 +21,20 @@ const data = {
       blocked_amount: "60.00",
       status: "On Hold",
     },
+    {
+      number: "8210123412344990",
+      currency: "CHF",
+      balance: "1560.00",
+      blocked_amount: "0.00",
+      status: "Active",
+    },
+    {
+      number: "8210123412344990",
+      currency: "CNY",
+      balance: "23050",
+      blocked_amount: "0.00",
+      status: "Active",
+    },
   ],
   openDeposits: [
     {

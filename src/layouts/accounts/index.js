@@ -25,11 +25,16 @@ import CreditItem from "./components/creditItem";
 
 function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
+  const [activeView, setActiveView] = useState("list");
 
   const { paymentAccounts, openDeposits, credits } = data;
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleViewChange = (view) => {
+    setActiveView(view);
   };
 
   return (
@@ -42,7 +47,7 @@ function Accounts() {
         </SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center" mt={4}>
           <AccountTab activeTab={activeTab} onTabChange={handleTabChange} />
-          <ViewTab />
+          <ViewTab activeView={activeView} onViewChange={handleViewChange} />
         </SoftBox>
 
         {activeTab === "all" || activeTab === "account" ? (
@@ -57,7 +62,7 @@ function Accounts() {
             {paymentAccounts && (
               <SoftBox>
                 {paymentAccounts.map((account, index) => (
-                  <AccountItem key={index} {...account}></AccountItem>
+                  <AccountItem key={index} {...account} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
             )}
@@ -76,7 +81,7 @@ function Accounts() {
             {openDeposits && (
               <SoftBox>
                 {openDeposits.map((deposit, index) => (
-                  <DepositItem key={index} {...deposit}></DepositItem>
+                  <DepositItem key={index} {...deposit} viewMode={activeView}></DepositItem>
                 ))}
               </SoftBox>
             )}
@@ -95,7 +100,7 @@ function Accounts() {
             {credits && (
               <SoftBox>
                 {credits.map((credit, index) => (
-                  <CreditItem key={index} {...credit}></CreditItem>
+                  <CreditItem key={index} {...credit} viewMode={activeView}></CreditItem>
                 ))}
               </SoftBox>
             )}

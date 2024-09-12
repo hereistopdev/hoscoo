@@ -33,27 +33,22 @@ StyledSoftButton.defaultProps = {
   isActive: false, // Default value for isActive
 };
 
-function ViewTab() {
-  const [activeButton, setActiveButton] = useState("list");
-
-  const handleListClick = () => {
-    setActiveButton("list");
-  };
-
-  const handleGridClick = () => {
-    setActiveButton("grid");
-  };
-
+function ViewTab({ activeView, onViewChange }) {
   return (
     <SoftBox display="flex" px={1} py={1} style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}>
-      <StyledSoftButton onClick={handleListClick} isActive={activeButton === "list"}>
+      <StyledSoftButton onClick={() => onViewChange("list")} isActive={activeView === "list"}>
         List
       </StyledSoftButton>
-      <StyledSoftButton onClick={handleGridClick} isActive={activeButton === "grid"}>
+      <StyledSoftButton onClick={() => onViewChange("grid")} isActive={activeView === "grid"}>
         Grid
       </StyledSoftButton>
     </SoftBox>
   );
 }
+
+ViewTab.propTypes = {
+  activeView: PropTypes.string.isRequired,
+  onViewChange: PropTypes.func.isRequired,
+};
 
 export default ViewTab;
