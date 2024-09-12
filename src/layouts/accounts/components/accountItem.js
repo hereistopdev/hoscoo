@@ -1,24 +1,30 @@
 import PropTypes from "prop-types";
 
 // @mui material components
-import Grid from "@mui/material/Grid";
 
 // Hoscoo React components
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
-import formatMoney from "utils/money";
-import Money from "./money";
 import CardNumber from "./cardNumber";
+import Money from "./money";
 
 import borders from "assets/theme/base/borders";
+import convertCurrencyToCountryCode from "utils/flag";
 
 function AccountItem({ number, currency, balance, blocked_amount, status }) {
   const { borderWidth, borderColor } = borders;
+
+  const countryCode = convertCurrencyToCountryCode(currency);
+
   return (
     <SoftBox p={3} my={1} border={`${borderWidth[1]} solid ${borderColor}`} borderRadius="lg">
       <SoftBox display="flex" justifyContent="space-between" alignItems="center">
-        <SoftBox></SoftBox>
+        <img
+          src={`https://flagcdn.com/64x48/${countryCode}.png`}
+          alt="countryFlag"
+          style={{ width: 24, height: 24, borderRadius: "50%" }}
+        />
         <SoftBox>
           <CardNumber number={number} hidden={true} />
           <SoftTypography color="#747A80" fontSize={14} mt={1}>
