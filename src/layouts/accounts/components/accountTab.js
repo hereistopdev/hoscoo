@@ -33,41 +33,28 @@ StyledSoftButton.defaultProps = {
   isActive: false, // Default value for isActive
 };
 
-function AccountTab() {
-  const [activeButton, setActiveButton] = useState("all");
-
-  const handleAllClick = () => {
-    setActiveButton("all");
-  };
-
-  const handleDepositClick = () => {
-    setActiveButton("deposit");
-  };
-
-  const handleAccountClick = () => {
-    setActiveButton("account");
-  };
-
-  const handleCreditClick = () => {
-    setActiveButton("credit");
-  };
-
+function AccountTab({ activeTab, onTabChange }) {
   return (
     <SoftBox display="flex" px={1} py={1} style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}>
-      <StyledSoftButton onClick={handleAllClick} isActive={activeButton === "all"}>
+      <StyledSoftButton onClick={() => onTabChange("all")} isActive={activeTab === "all"}>
         All
       </StyledSoftButton>
-      <StyledSoftButton onClick={handleAccountClick} isActive={activeButton === "account"}>
+      <StyledSoftButton onClick={() => onTabChange("account")} isActive={activeTab === "account"}>
         Payment accounts
       </StyledSoftButton>
-      <StyledSoftButton onClick={handleDepositClick} isActive={activeButton === "deposit"}>
+      <StyledSoftButton onClick={() => onTabChange("deposit")} isActive={activeTab === "deposit"}>
         Open deposits
       </StyledSoftButton>
-      <StyledSoftButton onClick={handleCreditClick} isActive={activeButton === "credit"}>
+      <StyledSoftButton onClick={() => onTabChange("credit")} isActive={activeTab === "credit"}>
         Your credits
       </StyledSoftButton>
     </SoftBox>
   );
 }
+
+AccountTab.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  onTabChange: PropTypes.func.isRequired,
+};
 
 export default AccountTab;

@@ -49,26 +49,45 @@ function AccountItem({ number, currency, balance, blocked_amount, status }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox width="19%" textAlign="center">
-          <Money amount={balance} currency={currency} />
+          <Money amount={blocked_amount} currency={currency} />
           <SoftTypography color="#747A80" fontSize={14} mt={1}>
             Blocked amount
           </SoftTypography>
         </SoftBox>
+
         <SoftBox width="16%" textAlign="center">
-          <SoftButton
+          <SoftBox
+            width="110px"
+            textAlign="center"
             style={{
+              margin: "auto",
               backgroundColor: "#E0F6E6",
-              textTransform: "none",
-              fontColor: "#23E33E",
-              fontSize: "12",
-              width: "110px",
+              padding: "8px 16px",
+              borderRadius: "8px",
             }}
           >
-            {status}
-          </SoftButton>
+            <SoftTypography
+              fontSize={14}
+              fontWeight="bold"
+              style={{
+                color: "#23E33E",
+              }}
+            >
+              {status}
+            </SoftTypography>
+          </SoftBox>
         </SoftBox>
         <SoftBox width="5%" textAlign="center">
-          <SoftTypography color="black">•••</SoftTypography>
+          <SoftButton
+            style={{
+              backgroundColor: "transparent",
+              color: "black",
+              fontSize: 16,
+            }}
+            variant="text"
+          >
+            •••
+          </SoftButton>
         </SoftBox>
       </SoftBox>
     </SoftBox>

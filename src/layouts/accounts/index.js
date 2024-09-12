@@ -12,7 +12,7 @@ import typography from "assets/theme/base/typography";
 // Dashboard layout components
 
 // Data
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "store/AuthContext";
 import TotalBalance from "./components/totalBalance";
 import QuickActions from "./components/quickActions";
@@ -24,10 +24,13 @@ import DepositItem from "./components/depositItem";
 import CreditItem from "./components/creditItem";
 
 function Accounts() {
-  const { size } = typography;
+  const [activeTab, setActiveTab] = useState("all");
 
-  const { user, loading } = useContext(AuthContext);
   const { paymentAccounts, openDeposits, credits } = data;
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <DashboardLayout>
@@ -38,41 +41,66 @@ function Accounts() {
           <QuickActions />
         </SoftBox>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center" mt={4}>
-          <AccountTab />
+          <AccountTab activeTab={activeTab} onTabChange={handleTabChange} />
           <ViewTab />
         </SoftBox>
-        <SoftTypography fontSize={14} color="#747A80" mt={4}>
-          Payment accounts
-        </SoftTypography>
-        {paymentAccounts && (
-          <SoftBox>
-            {paymentAccounts.map((account, index) => (
-              <AccountItem key={index} {...account}></AccountItem>
-            ))}
-          </SoftBox>
-        )}
 
-        <SoftTypography fontSize={14} color="#747A80" mt={4}>
-          Open deposits
-        </SoftTypography>
-        {openDeposits && (
-          <SoftBox>
-            {openDeposits.map((deposit, index) => (
-              <DepositItem key={index} {...deposit}></DepositItem>
-            ))}
-          </SoftBox>
-        )}
+        {activeTab === "all" || activeTab === "account" ? (
+          <>
+            {activeTab === "all" ? (
+              <SoftTypography fontSize={14} color="#747A80" mt={4}>
+                Payment accounts
+              </SoftTypography>
+            ) : (
+              <SoftTypography fontSize={14} mt={4}></SoftTypography>
+            )}
+            {paymentAccounts && (
+              <SoftBox>
+                {paymentAccounts.map((account, index) => (
+                  <AccountItem key={index} {...account}></AccountItem>
+                ))}
+              </SoftBox>
+            )}
+          </>
+        ) : null}
 
-        <SoftTypography fontSize={14} color="#747A80" mt={4}>
-          Your credits
-        </SoftTypography>
-        {credits && (
-          <SoftBox>
-            {credits.map((credit, index) => (
-              <CreditItem key={index} {...credit}></CreditItem>
-            ))}
-          </SoftBox>
-        )}
+        {activeTab === "all" || activeTab === "deposit" ? (
+          <>
+            {activeTab === "all" ? (
+              <SoftTypography fontSize={14} color="#747A80" mt={4}>
+                Open deposits
+              </SoftTypography>
+            ) : (
+              <SoftTypography fontSize={14} mt={4}></SoftTypography>
+            )}
+            {openDeposits && (
+              <SoftBox>
+                {openDeposits.map((deposit, index) => (
+                  <DepositItem key={index} {...deposit}></DepositItem>
+                ))}
+              </SoftBox>
+            )}
+          </>
+        ) : null}
+
+        {activeTab === "all" || activeTab === "credit" ? (
+          <>
+            {activeTab === "all" ? (
+              <SoftTypography fontSize={14} color="#747A80" mt={4}>
+                Your credits
+              </SoftTypography>
+            ) : (
+              <SoftTypography fontSize={14} mt={4}></SoftTypography>
+            )}
+            {credits && (
+              <SoftBox>
+                {credits.map((credit, index) => (
+                  <CreditItem key={index} {...credit}></CreditItem>
+                ))}
+              </SoftBox>
+            )}
+          </>
+        ) : null}
       </SoftBox>
     </DashboardLayout>
   );

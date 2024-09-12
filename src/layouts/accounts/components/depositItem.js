@@ -54,20 +54,38 @@ function DepositItem({ name, rate, balance, accured_interest, date }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox width="16%" textAlign="center">
-          <SoftButton
+          <SoftBox
+            width="110px"
+            textAlign="center"
             style={{
-              backgroundColor: "#EBF0F0",
-              textTransform: "none",
-              fontColor: "#747A80",
-              fontSize: "12",
-              width: "110px",
+              margin: "auto",
+              backgroundColor: "#F4F4F4",
+              padding: "8px 16px",
+              borderRadius: "8px",
             }}
           >
-            {date}
-          </SoftButton>
+            <SoftTypography
+              fontSize={14}
+              fontWeight="bold"
+              style={{
+                color: "#6C757D",
+              }}
+            >
+              {date}
+            </SoftTypography>
+          </SoftBox>
         </SoftBox>
         <SoftBox width="5%" textAlign="center">
-          <SoftTypography color="black">•••</SoftTypography>
+          <SoftButton
+            style={{
+              backgroundColor: "transparent",
+              color: "black",
+              fontSize: 16,
+            }}
+            variant="text"
+          >
+            •••
+          </SoftButton>
         </SoftBox>
       </SoftBox>
     </SoftBox>
