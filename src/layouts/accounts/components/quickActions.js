@@ -7,16 +7,19 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
-
-const handleOpenClick = () => {
-  alert("Open");
-};
+import CreateBankAccountModal from "./CreateBankAccountModal";
+import { useState } from "react";
 
 const handleDepositClick = () => {
   alert("Deposit");
 };
 
-function QuickActions() {
+function QuickActions({ fetchAccount }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
+
   return (
     <SoftBox display="flex">
       <SoftButton
@@ -26,10 +29,11 @@ function QuickActions() {
           fontSize: 14,
         }}
         variant="text"
-        onClick={handleOpenClick}
+        onClick={handleOpen}
       >
         Open Account
       </SoftButton>
+      <CreateBankAccountModal open={modalOpen} onClose={handleClose} fetchAccount={fetchAccount} />
       <SoftButton
         style={{
           backgroundColor: "transparent",
