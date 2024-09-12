@@ -18,7 +18,6 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const result = await provider(auth);
-      console.log(result);
       setUser(result.user);
       navigate("/dashboard");
     } catch (error) {

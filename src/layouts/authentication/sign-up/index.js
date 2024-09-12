@@ -29,6 +29,7 @@ import {
 import { Button } from "@mui/material";
 import axios from "axios";
 import { AuthContext } from "store/AuthContext";
+import { signUp } from "services/api";
 
 function SignUp() {
   const { setUser } = useContext(AuthContext);
@@ -51,19 +52,11 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, email, password);
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/signup", {
-        name,
-        email,
-        password,
-      });
+      const response = await signUp(name, email, password);
 
-      // Assuming backend sends token and userId, adjust according to your response structure
-
-      console.log(response.data);
       if (response.data.token) {
         setSuccess("Signup successful!"); // Or use response.data.message if you have one
         // You might want to store the token and userId in localStorage or state

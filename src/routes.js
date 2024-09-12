@@ -69,6 +69,7 @@ import {
 import USAFlag from "examples/Icons/Country/USA";
 import EUFlag from "examples/Icons/Country/EU";
 import UKFlag from "examples/Icons/Country/UK";
+import ResetPassword from "layouts/authentication/reset-password";
 
 const routes = [
   {
@@ -269,6 +270,16 @@ const routes = [
     route: "/authentication/forget-pass",
     icon: <Document size="12px" />,
     component: <ForgetPass />,
+    protected: false,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Reset Password",
+    key: "reset-password",
+    route: "/reset-password",
+    icon: <Document size="12px" />,
+    component: <ResetPassword />,
     protected: false,
     noCollapse: true,
   },

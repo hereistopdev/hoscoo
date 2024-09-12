@@ -20,6 +20,7 @@ import curved9 from "assets/images/curved-images/curved-6.jpg";
 import Socials from "../components/Socials";
 import axios from "axios";
 import { AuthContext } from "store/AuthContext";
+import { signIn } from "services/api";
 
 function SignIn() {
   const { setUser } = useContext(AuthContext);
@@ -36,16 +37,11 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(email, password);
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/signin", {
-        email,
-        password,
-      });
+      const response = await signIn(email, password);
 
-      console.log(response.data);
       if (response.data.token) {
         // setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
