@@ -10,9 +10,12 @@ import SoftTypography from "components/SoftTypography";
 import formatMoney from "utils/money";
 import Money from "./money";
 
+import borders from "assets/theme/base/borders";
+
 function CreditItem({ name, rate, credit_amount, paid_amount, date }) {
+  const { borderWidth, borderColor } = borders;
   return (
-    <SoftBox px={2} py={2} style={{ borderColor: "#CFDBD5B2", borderRadius: "1" }} mx={1} my={1}>
+    <SoftBox p={3} my={1} border={`${borderWidth[1]} solid ${borderColor}`} borderRadius="lg">
       <SoftBox display="flex" justifyContent="space-between" alignItems="center">
         <SoftBox></SoftBox>
         <SoftBox>

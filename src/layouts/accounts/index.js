@@ -1,8 +1,10 @@
 // Hoscoo React components
 import SoftBox from "components/SoftBox";
+import SoftTypography from "components/SoftTypography";
 
 // Hoscoo React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Hoscoo React base styles
 import typography from "assets/theme/base/typography";
@@ -26,11 +28,10 @@ function Accounts() {
 
   const { user, loading } = useContext(AuthContext);
   const { paymentAccounts, openDeposits, credits } = data;
-  console.log("ddddddddd", data);
-  console.log("paymnet", paymentAccounts);
 
   return (
     <DashboardLayout>
+      <DashboardNavbar />
       <SoftBox py={3} px={3}>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
           <TotalBalance amount={data.totalAmount} currency={data.currency}></TotalBalance>
@@ -40,24 +41,33 @@ function Accounts() {
           <AccountTab />
           <ViewTab />
         </SoftBox>
+        <SoftTypography fontSize={14} color="#747A80" mt={4}>
+          Payment accounts
+        </SoftTypography>
         {paymentAccounts && (
-          <SoftBox mt={4}>
+          <SoftBox>
             {paymentAccounts.map((account, index) => (
               <AccountItem key={index} {...account}></AccountItem>
             ))}
           </SoftBox>
         )}
 
+        <SoftTypography fontSize={14} color="#747A80" mt={4}>
+          Open deposits
+        </SoftTypography>
         {openDeposits && (
-          <SoftBox mt={4}>
+          <SoftBox>
             {openDeposits.map((deposit, index) => (
               <DepositItem key={index} {...deposit}></DepositItem>
             ))}
           </SoftBox>
         )}
 
+        <SoftTypography fontSize={14} color="#747A80" mt={4}>
+          Your credits
+        </SoftTypography>
         {credits && (
-          <SoftBox mt={4}>
+          <SoftBox>
             {credits.map((credit, index) => (
               <CreditItem key={index} {...credit}></CreditItem>
             ))}
