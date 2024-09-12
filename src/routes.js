@@ -45,6 +45,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import ForgetPass from "layouts/authentication/forget-pass";
+import Accounts from "layouts/accounts";
 
 // Hoscoo React icons
 import Shop from "examples/Icons/Shop";
@@ -88,13 +89,12 @@ const routes = [
     key: "accounts",
     route: "/accounts",
     icon: <CustomerSupport size="12px" />,
-    component: <></>,
-    protected: true,
+    component: <Accounts />,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Cards",
+    name: "Banks & Cards",
     key: "cards",
     route: "/cards",
     icon: <CreditCard size="12px" />,
