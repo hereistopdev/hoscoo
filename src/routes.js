@@ -92,7 +92,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Cards",
+    name: "Banks & Cards",
     key: "cards",
     route: "/cards",
     icon: <CreditCard size="12px" />,
