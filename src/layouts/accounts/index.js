@@ -45,7 +45,13 @@ function Accounts() {
           <TotalBalance amount={data.totalAmount} currency={data.currency}></TotalBalance>
           <QuickActions />
         </SoftBox>
-        <SoftBox display="flex" justifyContent="space-between" alignItems="center" mt={4}>
+        <SoftBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mt={4}
+          position="relative"
+        >
           <AccountTab activeTab={activeTab} onTabChange={handleTabChange} />
           <ViewTab activeView={activeView} onViewChange={handleViewChange} />
         </SoftBox>
@@ -60,7 +66,20 @@ function Accounts() {
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
             {paymentAccounts && (
-              <SoftBox>
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
                 {paymentAccounts.map((account, index) => (
                   <AccountItem key={index} {...account} viewMode={activeView}></AccountItem>
                 ))}

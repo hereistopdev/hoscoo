@@ -35,19 +35,52 @@ StyledSoftButton.defaultProps = {
 
 function AccountTab({ activeTab, onTabChange }) {
   return (
-    <SoftBox display="flex" px={1} py={1} style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}>
-      <StyledSoftButton onClick={() => onTabChange("all")} isActive={activeTab === "all"}>
-        All
-      </StyledSoftButton>
-      <StyledSoftButton onClick={() => onTabChange("account")} isActive={activeTab === "account"}>
-        Payment accounts
-      </StyledSoftButton>
-      <StyledSoftButton onClick={() => onTabChange("deposit")} isActive={activeTab === "deposit"}>
-        Open deposits
-      </StyledSoftButton>
-      <StyledSoftButton onClick={() => onTabChange("credit")} isActive={activeTab === "credit"}>
-        Your credits
-      </StyledSoftButton>
+    <SoftBox
+      display="flex"
+      px={1}
+      py={1}
+      style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}
+      width={{ xs: "100%", sm: "inherit" }}
+      // pr={{ xs: "55px", sm: "1px" }}
+    >
+      <SoftBox style={{ overflow: { xs: "auto", sm: "inherit" }, width: "100%", display: "flex" }}>
+        <StyledSoftButton
+          onClick={() => onTabChange("all")}
+          isActive={activeTab === "all"}
+          style={{
+            minWidth: "max-content",
+          }}
+        >
+          All
+        </StyledSoftButton>
+        <StyledSoftButton
+          onClick={() => onTabChange("account")}
+          isActive={activeTab === "account"}
+          style={{
+            minWidth: "max-content",
+          }}
+        >
+          Payment accounts
+        </StyledSoftButton>
+        <StyledSoftButton
+          onClick={() => onTabChange("deposit")}
+          isActive={activeTab === "deposit"}
+          style={{
+            minWidth: "max-content",
+          }}
+        >
+          Open deposits
+        </StyledSoftButton>
+        <StyledSoftButton
+          onClick={() => onTabChange("credit")}
+          isActive={activeTab === "credit"}
+          style={{
+            minWidth: "max-content",
+          }}
+        >
+          Your credits
+        </StyledSoftButton>
+      </SoftBox>
     </SoftBox>
   );
 }

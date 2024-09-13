@@ -34,15 +34,45 @@ StyledSoftButton.defaultProps = {
 };
 
 function ViewTab({ activeView, onViewChange }) {
+  const [visible, setVisible] = useState(true);
   return (
-    <SoftBox display="flex" px={1} py={1} style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}>
-      <StyledSoftButton onClick={() => onViewChange("list")} isActive={activeView === "list"}>
-        List
-      </StyledSoftButton>
-      <StyledSoftButton onClick={() => onViewChange("grid")} isActive={activeView === "grid"}>
-        Grid
-      </StyledSoftButton>
-    </SoftBox>
+    <>
+      <SoftButton
+        style={{
+          backgroundColor: "transparent",
+          color: "black",
+          fontSize: 16,
+          position: "absolute",
+          top: "20%",
+          right: "0",
+        }}
+        display={{ sm: "none", xs: "block" }}
+        variant="text"
+        onClick={() => setVisible(!visible)}
+      >
+        •••
+      </SoftButton>
+      <SoftBox
+        px={1}
+        py={1}
+        style={{
+          backgroundColor: "#EBF0F0",
+          borderRadius: 10,
+        }}
+        display="flex"
+        flexDirection={{ sm: "row", xs: "column" }}
+        position={{ sm: "inherit", xs: "absolute" }}
+        top={{ xs: "100%" }}
+        right={{ xs: "0" }}
+      >
+        <StyledSoftButton onClick={() => onViewChange("list")} isActive={activeView === "list"}>
+          List
+        </StyledSoftButton>
+        <StyledSoftButton onClick={() => onViewChange("grid")} isActive={activeView === "grid"}>
+          Grid
+        </StyledSoftButton>
+      </SoftBox>
+    </>
   );
 }
 
