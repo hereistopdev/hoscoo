@@ -54,31 +54,31 @@ function AccountTab({ activeTab, onTabChange }) {
           All
         </StyledSoftButton>
         <StyledSoftButton
-          onClick={() => onTabChange("account")}
-          isActive={activeTab === "account"}
+          onClick={() => onTabChange("saving")}
+          isActive={activeTab === "saving"}
           style={{
             minWidth: "max-content",
           }}
         >
-          Payment accounts
+          Saving
         </StyledSoftButton>
         <StyledSoftButton
-          onClick={() => onTabChange("deposit")}
-          isActive={activeTab === "deposit"}
+          onClick={() => onTabChange("checking")}
+          isActive={activeTab === "checking"}
           style={{
             minWidth: "max-content",
           }}
         >
-          Open deposits
+          Checking
         </StyledSoftButton>
         <StyledSoftButton
-          onClick={() => onTabChange("credit")}
-          isActive={activeTab === "credit"}
+          onClick={() => onTabChange("loan")}
+          isActive={activeTab === "loan"}
           style={{
             minWidth: "max-content",
           }}
         >
-          Your credits
+          Loan
         </StyledSoftButton>
       </SoftBox>
     </SoftBox>

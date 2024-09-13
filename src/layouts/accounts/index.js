@@ -56,11 +56,11 @@ function Accounts() {
           <ViewTab activeView={activeView} onViewChange={handleViewChange} />
         </SoftBox>
 
-        {activeTab === "all" || activeTab === "account" ? (
+        {activeTab === "all" || activeTab === "saving" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Payment accounts
+                Saving
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
@@ -88,11 +88,11 @@ function Accounts() {
           </>
         ) : null}
 
-        {activeTab === "all" || activeTab === "deposit" ? (
+        {activeTab === "all" || activeTab === "checking" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Open deposits
+                Checking
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
@@ -107,11 +107,11 @@ function Accounts() {
           </>
         ) : null}
 
-        {activeTab === "all" || activeTab === "credit" ? (
+        {activeTab === "all" || activeTab === "loan" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Your credits
+                Loan
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
