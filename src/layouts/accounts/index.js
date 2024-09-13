@@ -23,7 +23,10 @@ function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
   const [activeView, setActiveView] = useState("list");
 
-  const { savingAccounts, checkingAccounts, loanAccounts } = data;
+  const allAccounts = data.paymentAccounts;
+  const savingAccounts = data.paymentAccounts.filter((account) => account.type === "Saving");
+  const checkingAccounts = data.paymentAccounts.filter((account) => account.type === "Checking");
+  const loanAccounts = data.paymentAccounts.filter((account) => account.type === "Loan");
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
