@@ -97,7 +97,20 @@ function Accounts() {
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
             {checkingAccounts && (
-              <SoftBox>
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
                 {checkingAccounts.map((deposit, index) => (
                   <AccountItem key={index} {...deposit} viewMode={activeView}></AccountItem>
                 ))}
@@ -116,7 +129,20 @@ function Accounts() {
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
             {loanAccounts && (
-              <SoftBox>
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
                 {loanAccounts.map((credit, index) => (
                   <AccountItem key={index} {...credit} viewMode={activeView}></AccountItem>
                 ))}
