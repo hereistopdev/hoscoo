@@ -7,27 +7,23 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Hoscoo React base styles
-import typography from "assets/theme/base/typography";
 
 // Dashboard layout components
 
 // Data
-import { useContext, useState } from "react";
-import { AuthContext } from "store/AuthContext";
-import TotalBalance from "./components/totalBalance";
-import QuickActions from "./components/quickActions";
-import data from "./data/mock";
-import AccountTab from "./components/accountTab";
-import ViewTab from "./components/viewTab";
+import { useState } from "react";
 import AccountItem from "./components/accountItem";
-import DepositItem from "./components/depositItem";
-import CreditItem from "./components/creditItem";
+import AccountTab from "./components/accountTab";
+import QuickActions from "./components/quickActions";
+import TotalBalance from "./components/totalBalance";
+import ViewTab from "./components/viewTab";
+import data from "./data/mock";
 
 function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
   const [activeView, setActiveView] = useState("list");
 
-  const { paymentAccounts, openDeposits, credits } = data;
+  const { savingAccounts, checkingAccounts, loanAccounts } = data;
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -65,7 +61,7 @@ function Accounts() {
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
-            {paymentAccounts && (
+            {savingAccounts && (
               <SoftBox
                 style={{
                   display: "flex",
@@ -80,7 +76,7 @@ function Accounts() {
                       }),
                 }}
               >
-                {paymentAccounts.map((account, index) => (
+                {savingAccounts.map((account, index) => (
                   <AccountItem key={index} {...account} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
@@ -97,10 +93,10 @@ function Accounts() {
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
-            {openDeposits && (
+            {checkingAccounts && (
               <SoftBox>
-                {openDeposits.map((deposit, index) => (
-                  <DepositItem key={index} {...deposit} viewMode={activeView}></DepositItem>
+                {checkingAccounts.map((deposit, index) => (
+                  <AccountItem key={index} {...deposit} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
             )}
@@ -116,10 +112,10 @@ function Accounts() {
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
-            {credits && (
+            {loanAccounts && (
               <SoftBox>
-                {credits.map((credit, index) => (
-                  <CreditItem key={index} {...credit} viewMode={activeView}></CreditItem>
+                {loanAccounts.map((credit, index) => (
+                  <AccountItem key={index} {...credit} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
             )}
