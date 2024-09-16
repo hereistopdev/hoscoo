@@ -13,11 +13,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // Data
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "store/AuthContext";
-import TotalBalance from "./components/totalBalance";
-import QuickActions from "./components/quickActions";
 import data from "./data/mock";
-import { useState } from "react";
-import AccountItem from "./components/accountItem";
 import AccountTab from "./components/accountTab";
 import QuickActions from "./components/quickActions";
 import TotalBalance from "./components/totalBalance";
@@ -27,7 +23,6 @@ import DepositItem from "./components/depositItem";
 import CreditItem from "./components/creditItem";
 import useAuth from "store/useAuth";
 import { readBankAccount_ByUser } from "services/api";
-import data from "./data/mock"
 
 function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
