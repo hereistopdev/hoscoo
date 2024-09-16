@@ -40,9 +40,17 @@ function AccountItem({
   };
 
   return (
-    <SoftBox p={3} my={1} border={`${borderWidth[1]} solid ${borderColor}`} borderRadius="lg">
+    <>
       {viewMode === "list" && (
-        <SoftBox display="flex" width="100%" alignItems="center">
+        <SoftBox
+          display="flex"
+          width="100%"
+          alignItems="center"
+          p={3}
+          my={1}
+          border={`${borderWidth[1]} solid ${borderColor}`}
+          borderRadius="lg"
+        >
           <SoftBox width="5%" textAlign="center">
             <img
               src={`https://flagcdn.com/64x48/${countryCode}.png`}
@@ -125,7 +133,55 @@ function AccountItem({
           </SoftBox>
         </SoftBox>
       )}
-    </SoftBox>
+      {viewMode === "grid" && (
+        <SoftBox
+          p={3}
+          border={`${borderWidth[1]} solid ${borderColor}`}
+          borderRadius="lg"
+          my={1}
+          width={{ xs: "100%", lg: "49%" }}
+        >
+          <SoftBox display="flex" justifyContent="space-between">
+            <SoftBox>
+              <SoftTypography color="black" fontWeight="bold" fontSize={14}>
+                {currency}
+              </SoftTypography>
+              <CardNumber number={number} hidden={true} />
+            </SoftBox>
+            <SoftBox>
+              <img
+                src={`https://flagcdn.com/64x48/${countryCode}.png`}
+                alt="countryFlag"
+                style={{ width: 24, height: 24, borderRadius: "50%" }}
+              />
+            </SoftBox>
+          </SoftBox>
+
+          <SoftBox display="flex" justifyContent="space-between" mt={3} alignItems="center">
+            <SoftBox>
+              <Money amount={balance} currency={currency} fontSize={24} />
+              <SoftBox display="flex" alignItems="center">
+                <SoftTypography color="#747A80" fontSize={14} mr={1}>
+                  Blocked amount
+                </SoftTypography>
+                <Money amount={blocked_amount} currency={currency} />
+              </SoftBox>
+            </SoftBox>
+            <SoftBox>
+              <SoftTypography
+                fontSize={14}
+                fontWeight="bold"
+                style={{
+                  color: "#23E33E",
+                }}
+              >
+                {status}
+              </SoftTypography>
+            </SoftBox>
+          </SoftBox>
+        </SoftBox>
+      )}
+    </>
   );
 }
 

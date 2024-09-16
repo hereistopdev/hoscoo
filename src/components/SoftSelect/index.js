@@ -28,6 +28,7 @@ const SelectBox = ({ label, value, onChange, options }) => {
   return (
     <StyledFormControl>
       <StyledInputLabel>{label}</StyledInputLabel>
+      <StyledInputLabel style={{ width: "1000px" }}>{label}</StyledInputLabel>
       <StyledSelect value={value} onChange={onChange} displayEmpty>
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>
@@ -38,6 +39,7 @@ const SelectBox = ({ label, value, onChange, options }) => {
     </StyledFormControl>
   );
 };
+
 
 // Adding propTypes for SelectBox
 SelectBox.propTypes = {
@@ -65,6 +67,7 @@ const SoftSelect = ({ options, handleChange, value, label }) => {
   );
 };
 
+
 // Adding propTypes for SoftSelect
 SoftSelect.propTypes = {
   options: PropTypes.arrayOf(
@@ -77,5 +80,6 @@ SoftSelect.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string.isRequired,
 };
+
 
 export default SoftSelect;
