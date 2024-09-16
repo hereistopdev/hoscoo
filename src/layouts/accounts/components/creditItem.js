@@ -16,9 +16,17 @@ import borders from "assets/theme/base/borders";
 function CreditItem({ name, rate, credit_amount, paid_amount, date, viewMode }) {
   const { borderWidth, borderColor } = borders;
   return (
-    <SoftBox p={3} my={1} border={`${borderWidth[1]} solid ${borderColor}`} borderRadius="lg">
+    <SoftBox>
       {viewMode === "list" && (
-        <SoftBox display="flex" width="100%" alignItems="center">
+        <SoftBox
+          display="flex"
+          width="100%"
+          alignItems="center"
+          p={3}
+          my={1}
+          border={`${borderWidth[1]} solid ${borderColor}`}
+          borderRadius="lg"
+        >
           <SoftBox width="5%" textAlign="center">
             <img
               src={creditIcon}

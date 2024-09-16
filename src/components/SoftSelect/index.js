@@ -1,6 +1,7 @@
 import React from "react";
 import { MenuItem, FormControl, InputLabel, Select, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import PropTypes from "prop-types"; // Importing prop-types
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
@@ -26,6 +27,7 @@ const StyledSelect = styled(Select)({
 const SelectBox = ({ label, value, onChange, options }) => {
   return (
     <StyledFormControl>
+      <StyledInputLabel>{label}</StyledInputLabel>
       <StyledInputLabel style={{ width: "1000px" }}>{label}</StyledInputLabel>
       <StyledSelect value={value} onChange={onChange} displayEmpty>
         {options.map((option) => (
@@ -36,6 +38,20 @@ const SelectBox = ({ label, value, onChange, options }) => {
       </StyledSelect>
     </StyledFormControl>
   );
+};
+
+
+// Adding propTypes for SelectBox
+SelectBox.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 const SoftSelect = ({ options, handleChange, value, label }) => {
@@ -50,5 +66,20 @@ const SoftSelect = ({ options, handleChange, value, label }) => {
     </>
   );
 };
+
+
+// Adding propTypes for SoftSelect
+SoftSelect.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string.isRequired,
+};
+
 
 export default SoftSelect;

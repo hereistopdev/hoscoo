@@ -17,9 +17,6 @@ import { useState, useEffect } from "react";
 
 // @mui material components
 import Divider from "@mui/material/Divider";
-import Switch from "@mui/material/Switch";
-import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
 
 // Hoscoo React components
@@ -34,27 +31,20 @@ import Grid from "@mui/material/Grid";
 
 // Hoscoo React components
 import MasterCard from "examples/Cards/MasterCard";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import PaymentMethod from "layouts/billing/components/PaymentMethod";
 import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/billing/components/BillingInformation";
 import Transactions from "layouts/billing/components/Transactions";
 
 // Hoscoo React context
-import {
-  useSoftUIController,
-  setOpenCardDetail,
-  setTransparentSidenav,
-  setFixedNavbar,
-} from "context";
+import { useSoftUIController, setOpenCardDetail } from "context";
+import BankCard from "examples/Cards/BankCard";
 
 function CardDetail() {
   const [controller, dispatch] = useSoftUIController();
-  const { openCardDetail, transparentSidenav, fixedNavbar, sidenavColor } = controller;
+  const { openCardDetail } = controller;
   const [disabled, setDisabled] = useState(false);
-  const sidenavColors = ["primary", "dark", "info", "success", "warning", "error"];
+  console.log("carddetail", openCardDetail);
 
   // Use the useEffect hook to change the button state for the sidenav type based on window size.
   useEffect(() => {
@@ -73,7 +63,8 @@ function CardDetail() {
     return () => window.removeEventListener("resize", handleDisabled);
   }, []);
 
-  const handleCloseCardDetail = () => setOpenCardDetail(dispatch, false);
+  const handleCloseCardDetail = () =>
+    setOpenCardDetail(dispatch, { ...openCardDetail, open: false });
 
   return (
     <CardDetailRoot variant="permanent" ownerState={{ openCardDetail }}>
@@ -109,22 +100,33 @@ function CardDetail() {
 
       <Divider />
 
-      <SoftBox mt={1.5} pl={3} pr={2}>
+      <SoftBox mt={1} pl={3} pr={2}>
+        <SoftBox display="flex" justifyContent="space-between" mb={3}>
+          <SoftButton variant="outlined" color="dark">
+            Transfer
+          </SoftButton>
+          <SoftButton ml="auto" variant="outlined" color="dark">
+            Deposit
+          </SoftButton>
+          <SoftButton ml="auto" variant="outlined" color="dark">
+            Withdraw
+          </SoftButton>
+        </SoftBox>
+
         <SoftBox mb={1.5}>
           <Grid container spacing={3}>
             <Grid item xs={12} xl={12}>
-              <MasterCard number={4562112245947852} holder="jack peterson" expires="11/22" />
+              {openCardDetail.card.type === "bank" ? (
+                <BankCard card={openCardDetail.card} />
+              ) : (
+                <MasterCard card={openCardDetail.card} />
+              )}
             </Grid>
-
-            <Grid item xs={12} lg={12}>
-              <Invoices />
-            </Grid>
-          </Grid>
-        </SoftBox>
-        <SoftBox my={3}>
-          <Grid container spacing={3}>
             <Grid item xs={12} md={12}>
               <Transactions />
+            </Grid>
+            <Grid item xs={12} lg={12}>
+              <Invoices />
             </Grid>
           </Grid>
         </SoftBox>

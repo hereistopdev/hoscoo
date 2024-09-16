@@ -74,7 +74,17 @@ function SoftUIControllerProvider({ children }) {
     transparentNavbar: true,
     fixedNavbar: true,
     openConfigurator: false,
-    openCardDetail: false,
+    openCardDetail: {
+      open: false,
+      card: {
+        img: "brands/azania.png",
+        bankName: "Azania Bank",
+        number: 4562112245947852,
+        balance: 31400.0,
+        currency: "$",
+        type: "bank",
+      },
+    },
     direction: "ltr",
     layout: "dashboard",
   };

@@ -38,7 +38,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
       borderRadius: 0,
       boxShadow: lg,
       overflowY: "auto",
-      ...(openCardDetail ? drawerOpenStyles() : drawerCloseStyles()),
+      ...(openCardDetail.open ? drawerOpenStyles() : drawerCloseStyles()),
     },
   };
 });

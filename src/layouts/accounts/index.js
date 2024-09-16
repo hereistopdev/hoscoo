@@ -7,7 +7,6 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Hoscoo React base styles
-import typography from "assets/theme/base/typography";
 
 // Dashboard layout components
 
@@ -17,13 +16,18 @@ import { AuthContext } from "store/AuthContext";
 import TotalBalance from "./components/totalBalance";
 import QuickActions from "./components/quickActions";
 import data from "./data/mock";
+import { useState } from "react";
+import AccountItem from "./components/accountItem";
 import AccountTab from "./components/accountTab";
+import QuickActions from "./components/quickActions";
+import TotalBalance from "./components/totalBalance";
 import ViewTab from "./components/viewTab";
 import AccountItem from "./components/accountItem";
 import DepositItem from "./components/depositItem";
 import CreditItem from "./components/creditItem";
 import useAuth from "store/useAuth";
 import { readBankAccount_ByUser } from "services/api";
+import data from "./data/mock"
 
 function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
@@ -59,7 +63,10 @@ function Accounts() {
     fetchData();
   }, []);
 
-  const { paymentAccounts, openDeposits, credits } = data;
+  const allAccounts = data.paymentAccounts;
+  const savingAccounts = data.paymentAccounts.filter((account) => account.type === "Saving");
+  const checkingAccounts = data.paymentAccounts.filter((account) => account.type === "Checking");
+  const loanAccounts = data.paymentAccounts.filter((account) => account.type === "Loan");
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -77,16 +84,22 @@ function Accounts() {
           <TotalBalance amount={data.totalAmount} currency={data.currency}></TotalBalance>
           <QuickActions fetchAccount={fetchData} />
         </SoftBox>
-        <SoftBox display="flex" justifyContent="space-between" alignItems="center" mt={4}>
+        <SoftBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mt={4}
+          position="relative"
+        >
           <AccountTab activeTab={activeTab} onTabChange={handleTabChange} />
           <ViewTab activeView={activeView} onViewChange={handleViewChange} />
         </SoftBox>
 
-        {activeTab === "all" || activeTab === "account" ? (
+        {activeTab === "all" || activeTab === "saving" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Payment accounts
+                Saving
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
@@ -106,6 +119,24 @@ function Accounts() {
             {/* {paymentAccounts && (
               <SoftBox>
                 {paymentAccounts.map((account, index) => (
+
+            {savingAccounts && (
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
+                {savingAccounts.map((account, index) => (
+
                   <AccountItem key={index} {...account} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
@@ -113,38 +144,64 @@ function Accounts() {
           </>
         ) : null}
 
-        {activeTab === "all" || activeTab === "deposit" ? (
+        {activeTab === "all" || activeTab === "checking" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Open deposits
+                Checking
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
-            {openDeposits && (
-              <SoftBox>
-                {openDeposits.map((deposit, index) => (
-                  <DepositItem key={index} {...deposit} viewMode={activeView}></DepositItem>
+            {checkingAccounts && (
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
+                {checkingAccounts.map((deposit, index) => (
+                  <AccountItem key={index} {...deposit} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
             )}
           </>
         ) : null}
 
-        {activeTab === "all" || activeTab === "credit" ? (
+        {activeTab === "all" || activeTab === "loan" ? (
           <>
             {activeTab === "all" ? (
               <SoftTypography fontSize={14} color="#747A80" mt={4}>
-                Your credits
+                Loan
               </SoftTypography>
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
-            {credits && (
-              <SoftBox>
-                {credits.map((credit, index) => (
-                  <CreditItem key={index} {...credit} viewMode={activeView}></CreditItem>
+            {loanAccounts && (
+              <SoftBox
+                style={{
+                  display: "flex",
+                  ...(activeView === "list"
+                    ? {
+                        flexDirection: "column",
+                      }
+                    : {
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                      }),
+                }}
+              >
+                {loanAccounts.map((credit, index) => (
+                  <AccountItem key={index} {...credit} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
             )}
