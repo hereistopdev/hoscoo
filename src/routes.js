@@ -91,6 +91,7 @@ const routes = [
     icon: <CustomerSupport size="12px" />,
     component: <Accounts />,
     noCollapse: true,
+    protected: true,
   },
   {
     type: "collapse",

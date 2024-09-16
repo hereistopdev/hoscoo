@@ -11,17 +11,57 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 // Dashboard layout components
 
 // Data
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "store/AuthContext";
+import TotalBalance from "./components/totalBalance";
+import QuickActions from "./components/quickActions";
+import data from "./data/mock";
 import { useState } from "react";
 import AccountItem from "./components/accountItem";
 import AccountTab from "./components/accountTab";
 import QuickActions from "./components/quickActions";
 import TotalBalance from "./components/totalBalance";
 import ViewTab from "./components/viewTab";
-import data from "./data/mock";
+import AccountItem from "./components/accountItem";
+import DepositItem from "./components/depositItem";
+import CreditItem from "./components/creditItem";
+import useAuth from "store/useAuth";
+import { readBankAccount_ByUser } from "services/api";
+import data from "./data/mock"
 
 function Accounts() {
   const [activeTab, setActiveTab] = useState("all");
   const [activeView, setActiveView] = useState("list");
+  const { user } = useAuth();
+
+  const [accounts, setAccounts] = useState([]);
+
+  async function fetchData() {
+    try {
+      const response = await readBankAccount_ByUser(user.userID);
+      console.log(response.data);
+
+      if (response.data)
+        setAccounts(
+          response.data.map((v) => {
+            return {
+              accountId: v._id,
+              number: v.account_number,
+              currency: v.currency,
+              balance: v.balance,
+              blocked_amount: 0,
+              status: "Pending",
+            };
+          })
+        );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const allAccounts = data.paymentAccounts;
   const savingAccounts = data.paymentAccounts.filter((account) => account.type === "Saving");
@@ -42,7 +82,7 @@ function Accounts() {
       <SoftBox py={3} px={3}>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
           <TotalBalance amount={data.totalAmount} currency={data.currency}></TotalBalance>
-          <QuickActions />
+          <QuickActions fetchAccount={fetchData} />
         </SoftBox>
         <SoftBox
           display="flex"
@@ -64,6 +104,22 @@ function Accounts() {
             ) : (
               <SoftTypography fontSize={14} mt={4}></SoftTypography>
             )}
+            {accounts && (
+              <SoftBox>
+                {accounts.map((account, index) => (
+                  <AccountItem
+                    key={index}
+                    {...account}
+                    viewMode={activeView}
+                    fetchData={fetchData}
+                  ></AccountItem>
+                ))}
+              </SoftBox>
+            )}
+            {/* {paymentAccounts && (
+              <SoftBox>
+                {paymentAccounts.map((account, index) => (
+
             {savingAccounts && (
               <SoftBox
                 style={{
@@ -80,10 +136,11 @@ function Accounts() {
                 }}
               >
                 {savingAccounts.map((account, index) => (
+
                   <AccountItem key={index} {...account} viewMode={activeView}></AccountItem>
                 ))}
               </SoftBox>
-            )}
+            )} */}
           </>
         ) : null}
 

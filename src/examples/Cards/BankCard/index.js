@@ -9,11 +9,11 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
 // Images
-import curved14 from "assets/images/curved-images/curved14.jpg";
+import curved14 from "assets/images/curved-images/white-curved.jpeg";
 import masterCardLogo from "assets/images/logos/mastercard.png";
 
-function MasterCard({ color, card }) {
-  console.log("mastercard", card);
+function BankCard({ color, card }) {
+  console.log("bankcard", card);
   const numbers = [...`${card.number}`];
 
   if (numbers.length < 16 || numbers.length > 16) {
@@ -36,12 +36,12 @@ function MasterCard({ color, card }) {
       }) => ({
         background: gradients[color]
           ? `${linearGradient(
-              rgba(gradients[color].main, 0.8),
-              rgba(gradients[color].state, 0.8)
+              rgba(gradients[color].main, 0.3),
+              rgba(gradients[color].state, 0.3)
             )}, url(${curved14})`
           : `${linearGradient(
-              rgba(gradients.dark.main, 0.8),
-              rgba(gradients.dark.state, 0.8)
+              rgba(gradients.dark.main, 0.3),
+              rgba(gradients.dark.state, 0.3)
             )}, url(${curved14})`,
         boxShadow: xl,
       })}
@@ -50,14 +50,14 @@ function MasterCard({ color, card }) {
         <SoftBox color="white" p={1} lineHeight={0} display="inline-block">
           <Icon fontSize="default">wifi</Icon>
         </SoftBox>
-        <SoftTypography variant="h5" color="white" fontWeight="medium" sx={{ mt: 0, mb: 8, pb: 1 }}>
+        <SoftTypography variant="h5" color="white" fontWeight="medium" sx={{ mt: 0, mb: 6, pb: 1 }}>
           {num1}&nbsp;&nbsp;&nbsp;{num2}&nbsp;&nbsp;&nbsp;{num3}&nbsp;&nbsp;&nbsp;{num4}
         </SoftTypography>
         <SoftBox display="flex" justifyContent="space-between" alignItems="center">
           <SoftBox display="flex" alignItems="center">
             <SoftBox mr={3} lineHeight={1}>
               <SoftTypography variant="button" color="white" fontWeight="regular" opacity={0.8}>
-                Card Holder
+                Bank Name
               </SoftTypography>
               <SoftTypography
                 variant="h6"
@@ -65,20 +65,21 @@ function MasterCard({ color, card }) {
                 fontWeight="medium"
                 textTransform="capitalize"
               >
-                {card.holder}
+                {card.bankName}
               </SoftTypography>
             </SoftBox>
             <SoftBox lineHeight={1}>
               <SoftTypography variant="button" color="white" fontWeight="regular" opacity={0.8}>
-                Expires
+                Balance
               </SoftTypography>
               <SoftTypography variant="h6" color="white" fontWeight="medium">
-                {card.expires}
+                {card.currency}
+                {card.balance}
               </SoftTypography>
             </SoftBox>
           </SoftBox>
           <SoftBox display="flex" justifyContent="flex-end" width="20%">
-            <SoftBox component="img" src={card.img} alt="master card" width="60%" mt={1} />
+            <SoftBox component="img" src={card.img} alt="master card" width="100%" mt={1} />
           </SoftBox>
         </SoftBox>
       </SoftBox>
@@ -87,16 +88,16 @@ function MasterCard({ color, card }) {
 }
 
 // Setting default values for the props of MasterCard
-MasterCard.defaultProps = {
+BankCard.defaultProps = {
   color: "dark",
 };
 
-// Typechecking props for the MasterCard
-MasterCard.propTypes = {
+// Typechecking props for the BankCard
+BankCard.propTypes = {
   color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
   number: PropTypes.number.isRequired,
   holder: PropTypes.string.isRequired,
   expires: PropTypes.string.isRequired,
 };
 
-export default MasterCard;
+export default BankCard;

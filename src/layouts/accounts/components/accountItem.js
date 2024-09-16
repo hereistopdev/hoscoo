@@ -11,11 +11,33 @@ import Money from "./money";
 
 import borders from "assets/theme/base/borders";
 import convertCurrencyToCountryCode from "utils/flag";
+import { deleteBankAccount } from "services/api";
 
-function AccountItem({ number, currency, balance, blocked_amount, status, viewMode }) {
+function AccountItem({
+  accountId,
+  number,
+  currency,
+  balance,
+  blocked_amount,
+  status,
+  viewMode,
+  fetchData,
+}) {
   const { borderWidth, borderColor } = borders;
 
   const countryCode = convertCurrencyToCountryCode(currency);
+
+  const deleteAccount = async () => {
+    try {
+      const response = await deleteBankAccount(accountId);
+      if (response.data) {
+        fetchData();
+      }
+      // console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -96,6 +118,17 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
               variant="text"
             >
               •••
+            </SoftButton>
+            <SoftButton
+              style={{
+                backgroundColor: "transparent",
+                color: "black",
+                fontSize: 16,
+              }}
+              variant="text"
+              onClick={deleteAccount}
+            >
+              Del
             </SoftButton>
           </SoftBox>
         </SoftBox>
