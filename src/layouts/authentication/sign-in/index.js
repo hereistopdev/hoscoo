@@ -46,7 +46,9 @@ function SignIn() {
         // setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.userId);
+        console.log(response.data);
         setUser({
+          userID: response.data.userId,
           displayName: response.data.name,
           email: response.data.email,
           photoURL: undefined,

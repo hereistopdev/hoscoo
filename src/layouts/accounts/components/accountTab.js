@@ -36,14 +36,13 @@ StyledSoftButton.defaultProps = {
 function AccountTab({ activeTab, onTabChange }) {
   return (
     <SoftBox
-      display="flex"
       px={1}
       py={1}
       style={{ backgroundColor: "#EBF0F0", borderRadius: 10 }}
       width={{ xs: "100%", sm: "inherit" }}
-      // pr={{ xs: "55px", sm: "1px" }}
+      pr={{ xs: "55px", sm: "1px" }}
     >
-      <SoftBox style={{ overflow: { xs: "auto", sm: "inherit" }, width: "100%", display: "flex" }}>
+      <SoftBox style={{ width: "100%", display: "flex" }} overflow={{ xs: "auto", sm: "inherit" }}>
         <StyledSoftButton
           onClick={() => onTabChange("all")}
           isActive={activeTab === "all"}

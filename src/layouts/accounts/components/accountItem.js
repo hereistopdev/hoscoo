@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 // @mui material components
@@ -12,8 +13,40 @@ import Money from "./money";
 import borders from "assets/theme/base/borders";
 import convertCurrencyToCountryCode from "utils/flag";
 
+const StyledSoftButton = ({ onClick, children, style, isActive }) => (
+  <SoftButton
+    style={{
+      backgroundColor: isActive ? "black" : "transparent",
+      color: isActive ? "white" : "black",
+      fontSize: 12,
+      paddingTop: 10,
+      paddingBottom: 10,
+      textTransform: "none",
+      ...style,
+    }}
+    variant="text"
+    onClick={onClick}
+  >
+    {children}
+  </SoftButton>
+);
+
+StyledSoftButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  style: PropTypes.object,
+  isActive: PropTypes.bool, // Add isActive prop
+};
+
+StyledSoftButton.defaultProps = {
+  style: {},
+  isActive: false, // Default value for isActive
+};
+
 function AccountItem({ number, currency, balance, blocked_amount, status, viewMode }) {
   const { borderWidth, borderColor } = borders;
+  const [visible, setVisible] = useState(false);
+  const [activeAction, setActiveAction] = useState("delete");
 
   const countryCode = convertCurrencyToCountryCode(currency);
 
@@ -38,7 +71,7 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
           </SoftBox>
 
           <SoftBox width="22%" textAlign="center">
-            <CardNumber number={number} hidden={true} />
+            <CardNumber number={number} />
             <SoftTypography color="#747A80" fontSize={14} mt={1}>
               Account Number
             </SoftTypography>
@@ -64,7 +97,7 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
             </SoftTypography>
           </SoftBox>
 
-          <SoftBox width="16%" textAlign="center">
+          <SoftBox width="14%" textAlign="center">
             <SoftBox
               width="110px"
               textAlign="center"
@@ -86,17 +119,44 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
               </SoftTypography>
             </SoftBox>
           </SoftBox>
-          <SoftBox width="5%" textAlign="center">
+          <SoftBox width="7%" textAlign="center">
             <SoftButton
               style={{
                 backgroundColor: "transparent",
                 color: "black",
                 fontSize: 16,
               }}
+              position="absolute"
               variant="text"
+              onClick={() => setVisible(!visible)}
             >
               •••
             </SoftButton>
+            {visible && (
+              <SoftBox
+                display="flex"
+                flexDirection="column"
+                p={1}
+                style={{
+                  backgroundColor: "#EBF0F0",
+                  borderRadius: 10,
+                }}
+                position="absolute"
+              >
+                <StyledSoftButton
+                  onClick={() => setActiveAction("delete")}
+                  isActive={activeAction === "delete"}
+                >
+                  Delete
+                </StyledSoftButton>
+                <StyledSoftButton
+                  onClick={() => setActiveAction("other")}
+                  isActive={activeAction === "other"}
+                >
+                  Other
+                </StyledSoftButton>
+              </SoftBox>
+            )}
           </SoftBox>
         </SoftBox>
       )}
@@ -106,32 +166,22 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
           border={`${borderWidth[1]} solid ${borderColor}`}
           borderRadius="lg"
           my={1}
-          width={{ xs: "100%", lg: "49%" }}
+          width={{ xs: "100%", lg: "49.5%" }}
         >
-          <SoftBox display="flex" justifyContent="space-between">
-            <SoftBox>
-              <SoftTypography color="black" fontWeight="bold" fontSize={14}>
-                {currency}
-              </SoftTypography>
-              <CardNumber number={number} hidden={true} />
-            </SoftBox>
-            <SoftBox>
-              <img
-                src={`https://flagcdn.com/64x48/${countryCode}.png`}
-                alt="countryFlag"
-                style={{ width: 24, height: 24, borderRadius: "50%" }}
-              />
-            </SoftBox>
-          </SoftBox>
-
-          <SoftBox display="flex" justifyContent="space-between" mt={3} alignItems="center">
-            <SoftBox>
-              <Money amount={balance} currency={currency} fontSize={24} />
-              <SoftBox display="flex" alignItems="center">
-                <SoftTypography color="#747A80" fontSize={14} mr={1}>
-                  Blocked amount
+          <SoftBox display="flex" justifyContent="space-between" alignItems="center">
+            <SoftBox display="flex" alignItems="center">
+              <SoftBox mr={2}>
+                <img
+                  src={`https://flagcdn.com/64x48/${countryCode}.png`}
+                  alt="countryFlag"
+                  style={{ width: 24, height: 24, borderRadius: "50%" }}
+                />
+              </SoftBox>
+              <SoftBox>
+                <SoftTypography color="black" fontWeight="bold" fontSize={14}>
+                  {currency}
                 </SoftTypography>
-                <Money amount={blocked_amount} currency={currency} />
+                <CardNumber number={number} />
               </SoftBox>
             </SoftBox>
             <SoftBox>
@@ -144,6 +194,30 @@ function AccountItem({ number, currency, balance, blocked_amount, status, viewMo
               >
                 {status}
               </SoftTypography>
+            </SoftBox>
+          </SoftBox>
+
+          <SoftBox display="flex" justifyContent="space-between" mt={3} alignItems="end">
+            <SoftBox>
+              <Money amount={balance} currency={currency} fontSize={24} />
+              <SoftBox display="flex" alignItems="center">
+                <SoftTypography color="#747A80" fontSize={14} mr={1}>
+                  Blocked amount
+                </SoftTypography>
+                <Money amount={blocked_amount} currency={currency} />
+              </SoftBox>
+            </SoftBox>
+            <SoftBox>
+              <SoftButton
+                style={{
+                  backgroundColor: "transparent",
+                  color: "black",
+                  fontSize: 16,
+                }}
+                variant="text"
+              >
+                •••
+              </SoftButton>
             </SoftBox>
           </SoftBox>
         </SoftBox>
