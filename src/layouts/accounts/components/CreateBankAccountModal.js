@@ -1,15 +1,6 @@
-// CreateBankAccountModal.jsx
 import React, { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Button,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
+import PropTypes from "prop-types"; // Importing prop-types
 import SoftInput from "components/SoftInput";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -92,6 +83,13 @@ const CreateBankAccountModal = ({ open, onClose, fetchAccount }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+// Adding propTypes for CreateBankAccountModal
+CreateBankAccountModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  fetchAccount: PropTypes.func.isRequired,
 };
 
 export default CreateBankAccountModal;
