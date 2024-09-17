@@ -1,4 +1,4 @@
-const formatCardNumber = (number, hidden = false) => {
+const formatCardNumber = (number, hidden = true, half = false) => {
   const numberStr = String(number);
 
   // Format the number by adding spaces every four digits
@@ -9,8 +9,8 @@ const formatCardNumber = (number, hidden = false) => {
     const parts = formattedNumber.split(" ");
 
     if (parts.length === 4) {
-      // Hide the middle two parts and keep the first and last part visible
-      return `${parts[0]} **** **** ${parts[3]}`;
+      if (half) return `**** ${parts[3]}`;
+      else return `${parts[0]} **** **** ${parts[3]}`;
     }
   }
 
