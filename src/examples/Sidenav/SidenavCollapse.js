@@ -20,16 +20,15 @@ import {
 
 // Hoscoo React context
 import { useSoftUIController } from "context";
-import { useEffect } from "react";
 
 function SidenavCollapse({
-  color,
+  color = "info",
   icon,
   name,
-  children,
-  active,
-  noCollapse,
-  open,
+  children = false,
+  active = false,
+  noCollapse = false,
+  open = false,
   noback = false,
   ...rest
 }) {
@@ -67,16 +66,6 @@ function SidenavCollapse({
     </>
   );
 }
-
-// Setting default values for the props of SidenavCollapse
-SidenavCollapse.defaultProps = {
-  color: "info",
-  active: false,
-  noCollapse: false,
-  children: false,
-  open: false,
-  noback: false,
-};
 
 // Typechecking props for the SidenavCollapse
 SidenavCollapse.propTypes = {

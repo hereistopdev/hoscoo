@@ -40,7 +40,7 @@ function Accounts() {
 
   async function fetchData() {
     try {
-      const response = await readBankAccount_ByUser(user.userID);
+      const response = await readBankAccount_ByUser(user?.userID);
 
       if (response.data)
         setAccounts(
@@ -63,7 +63,7 @@ function Accounts() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [user]);
 
   return (
     <DashboardLayout>

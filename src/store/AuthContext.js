@@ -3,6 +3,7 @@ import PropTypes from "prop-types"; // Import PropTypes
 import { auth } from "../firebaseConfig"; // Import your Firebase auth instance
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { fetchUser } from "services/api";
 
 // Create a Context
 const AuthContext = createContext();
@@ -13,6 +14,35 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const fetchUserData = async (token) => {
+    console.log("FetchUserData", token);
+    try {
+      const response = await fetchUser(token);
+      console.log("Result", response.data);
+      setUser({
+        displayName: response.data.name,
+        email: response.data.email,
+        photoURL: "",
+        userID: response.data.userId,
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    console.log("This is the first", token);
+    if (token) {
+      fetchUserData(token);
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   const signIn = async (provider) => {
     setLoading(true);

@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from "react";
 
 // react-router-dom components
@@ -44,7 +29,7 @@ import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 import { useSoftUIController, setMiniSidenav } from "context";
 import { Typography } from "@mui/material";
 
-function Sidenav({ color, brand, brandName, routes, ...rest }) {
+function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentSidenav } = controller;
   const location = useLocation();
@@ -59,9 +44,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       setMiniSidenav(dispatch, window.innerWidth < 1200);
     }
 
-    /** 
-     The event listener that's calling the handleMiniSidenav function when resizing the window.
-    */
+    // The event listener that calls the handleMiniSidenav function when resizing the window.
     window.addEventListener("resize", handleMiniSidenav);
 
     // Call the handleMiniSidenav function to set the state with the initial value.
@@ -157,39 +140,14 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             <Typography component="h1" variant="button" sx={{ fontSize: "20px", color: "#7ab6ff" }}>
               {brandName}
             </Typography>
-            {/* <SoftTypography component="h3" variant="button" fontWeight="medium">
-              {brandName}
-            </SoftTypography> */}
           </SoftBox>
         </SoftBox>
       </SoftBox>
       <Divider />
       <List>{renderRoutes}</List>
-      {/* <SoftBox pt={2} my={2} mx={2} mt="auto">
-        <SidenavCard />
-        <SoftBox mt={2}>
-          <SoftButton
-            component="a"
-            href="https://hoscoo.com"
-            target="_blank"
-            rel="noreferrer"
-            variant="gradient"
-            color={color}
-            fullWidth
-          >
-            upgrade to pro
-          </SoftButton>
-        </SoftBox>
-      </SoftBox> */}
     </SidenavRoot>
   );
 }
-
-// Setting default values for the props of Sidenav
-Sidenav.defaultProps = {
-  color: "info",
-  brand: "",
-};
 
 // Typechecking props for the Sidenav
 Sidenav.propTypes = {

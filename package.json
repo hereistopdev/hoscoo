@@ -26,6 +26,7 @@
     "chart.js": "3.9.1",
     "chroma-js": "2.4.2",
     "firebase": "^10.13.1",
+    "jsonwebtoken": "^9.0.2",
     "prop-types": "^15.8.1",
     "react": ">=16.8.0",
     "react-chartjs-2": "3.0.5",

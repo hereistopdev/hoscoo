@@ -43,10 +43,8 @@ function SignIn() {
       const response = await signIn(email, password);
 
       if (response.data.token) {
-        // setToken(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userId", response.data.userId);
-        console.log(response.data);
+        sessionStorage.setItem("token", response.data.token);
+        console.log("Hi", response.data);
         setUser({
           userID: response.data.userId,
           displayName: response.data.name,
@@ -58,7 +56,6 @@ function SignIn() {
 
       setEmail("");
       setPassword("");
-      setName(""); // Clear name field if needed
     } catch (err) {
       console.log(err);
       setError(err.response?.data.message || "Signup failed");

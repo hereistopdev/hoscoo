@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
 import useAuth from "store/useAuth";
 
 import PropTypes from "prop-types";
+import { fetchUser } from "services/api";
 
 const RouteList = ({ routes }) => {
-  const { user } = useAuth();
+  const [userid, setUserID] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      fetchUser(token)
+        .then((response) => {
+          console.log("res", response.data.userId);
+          setUserID(response.data.userId);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const renderRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -14,7 +37,7 @@ const RouteList = ({ routes }) => {
       }
 
       if (route.route) {
-        if (route.protected && !user) {
+        if (route.protected && !userid) {
           return (
             <Route
               path={route.route}

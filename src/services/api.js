@@ -1,6 +1,17 @@
 import axios from "axios";
 
+// const API_URL = "https://hoscoo.onrender.com";
 const API_URL = "http://localhost:5000";
+
+//Auth
+
+export const fetchUser = async (token) => {
+  return axios.get(`${API_URL}/auth/user-data`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};
 
 export const signUp = async (name, email, password) => {
   return axios.post(`${API_URL}/auth/signup`, { name, email, password });
