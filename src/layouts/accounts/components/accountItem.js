@@ -12,35 +12,43 @@ import Money from "./money";
 
 import borders from "assets/theme/base/borders";
 import convertCurrencyToCountryCode from "utils/flag";
-import { deleteBankAccount } from "services/api";
 
-function AccountItem({
-  accountId,
-  number,
-  currency,
-  balance,
-  blocked_amount,
-  status,
-  viewMode,
-  fetchData,
-}) {
+const StyledSoftButton = ({ onClick, children, style, isActive }) => (
+  <SoftButton
+    style={{
+      backgroundColor: isActive ? "black" : "transparent",
+      color: isActive ? "white" : "black",
+      fontSize: 12,
+      paddingTop: 10,
+      paddingBottom: 10,
+      textTransform: "none",
+      ...style,
+    }}
+    variant="text"
+    onClick={onClick}
+  >
+    {children}
+  </SoftButton>
+);
+
+StyledSoftButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  style: PropTypes.object,
+  isActive: PropTypes.bool, // Add isActive prop
+};
+
+StyledSoftButton.defaultProps = {
+  style: {},
+  isActive: false, // Default value for isActive
+};
+
+function AccountItem({ number, currency, balance, blocked_amount, status, viewMode }) {
   const { borderWidth, borderColor } = borders;
   const [visible, setVisible] = useState(false);
   const [activeAction, setActiveAction] = useState("delete");
 
   const countryCode = convertCurrencyToCountryCode(currency);
-
-  const deleteAccount = async () => {
-    try {
-      const response = await deleteBankAccount(accountId);
-      if (response.data) {
-        fetchData();
-      }
-      // console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <>
@@ -124,17 +132,31 @@ function AccountItem({
             >
               •••
             </SoftButton>
-            <SoftButton
-              style={{
-                backgroundColor: "transparent",
-                color: "black",
-                fontSize: 16,
-              }}
-              variant="text"
-              onClick={deleteAccount}
-            >
-              Del
-            </SoftButton>
+            {visible && (
+              <SoftBox
+                display="flex"
+                flexDirection="column"
+                p={1}
+                style={{
+                  backgroundColor: "#EBF0F0",
+                  borderRadius: 10,
+                }}
+                position="absolute"
+              >
+                <StyledSoftButton
+                  onClick={() => setActiveAction("delete")}
+                  isActive={activeAction === "delete"}
+                >
+                  Delete
+                </StyledSoftButton>
+                <StyledSoftButton
+                  onClick={() => setActiveAction("other")}
+                  isActive={activeAction === "other"}
+                >
+                  Other
+                </StyledSoftButton>
+              </SoftBox>
+            )}
           </SoftBox>
         </SoftBox>
       )}
