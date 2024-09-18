@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useRef, useEffect, useState, useMemo } from "react";
 
 // porp-types is a library for typechecking of props
@@ -37,7 +22,7 @@ import configs from "examples/Charts/LineCharts/GradientLineChart/configs";
 // Hoscoo React base styles
 import colors from "assets/theme/base/colors";
 
-function GradientLineChart({ title, description, height, chart }) {
+function GradientLineChart({ title = "", description = "", height = "19.125rem", chart }) {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({});
   const { data, options } = chartData;
@@ -93,13 +78,6 @@ function GradientLineChart({ title, description, height, chart }) {
 
   return title || description ? <Card>{renderChart}</Card> : renderChart;
 }
-
-// Setting default values for the props of GradientLineChart
-GradientLineChart.defaultProps = {
-  title: "",
-  description: "",
-  height: "19.125rem",
-};
 
 // Typechecking props for the GradientLineChart
 GradientLineChart.propTypes = {

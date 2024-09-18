@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
 import useAuth from "store/useAuth"; // Assuming this is where your AuthContext or hook is
 import PropTypes from "prop-types";
+import { CircularProgress } from "@mui/material";
 
 const RouteList = ({ routes }) => {
   const { user, loading } = useAuth(); // Now you also use `loading`
@@ -10,9 +11,20 @@ const RouteList = ({ routes }) => {
     console.log("Route List", user, loading);
   }, [user, loading]);
 
-  // Prevent rendering the routes until loading is done
   if (loading) {
-    return <div>Loading...</div>; // Add your loader here
+    return (
+      <div
+        style={{
+          width: "100wh",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
   }
 
   const renderRoutes = (allRoutes) =>

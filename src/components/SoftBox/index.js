@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { forwardRef } from "react";
 
 // prop-types is a library for typechecking of props
@@ -22,7 +7,18 @@ import PropTypes from "prop-types";
 import SoftBoxRoot from "components/SoftBox/SoftBoxRoot";
 
 const SoftBox = forwardRef(
-  ({ variant, bgColor, color, opacity, borderRadius, shadow, ...rest }, ref) => (
+  (
+    {
+      variant = "contained",
+      bgColor = "transparent",
+      color = "dark",
+      opacity = 1,
+      borderRadius = "none",
+      shadow = "none",
+      ...rest
+    },
+    ref
+  ) => (
     <SoftBoxRoot
       {...rest}
       ref={ref}
@@ -30,16 +26,6 @@ const SoftBox = forwardRef(
     />
   )
 );
-
-// Setting default values for the props of SoftBox
-SoftBox.defaultProps = {
-  variant: "contained",
-  bgColor: "transparent",
-  color: "dark",
-  opacity: 1,
-  borderRadius: "none",
-  shadow: "none",
-};
 
 // Typechecking props for the SoftBox
 SoftBox.propTypes = {

@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// porp-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
 // @mui material components
@@ -27,7 +11,7 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftProgress from "components/SoftProgress";
 
-function ReportsBarChartItem({ color, icon, label, progress }) {
+function ReportsBarChartItem({ color = "dark", icon, label, progress }) {
   const { size } = typography;
 
   return (
@@ -69,11 +53,6 @@ function ReportsBarChartItem({ color, icon, label, progress }) {
     </SoftBox>
   );
 }
-
-// Setting default values for the props of ReportsBarChartItem
-ReportsBarChartItem.defaultProps = {
-  color: "dark",
-};
 
 // Typechecking props for the ReportsBarChartItem
 ReportsBarChartItem.propTypes = {

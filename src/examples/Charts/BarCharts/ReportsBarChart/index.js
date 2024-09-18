@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
 
 // porp-types is a library for typechecking of props
@@ -35,7 +20,7 @@ import BarReportsChartItem from "examples/Charts/BarCharts/ReportsBarChart/Repor
 // ReportsBarChart configurations
 import configs from "examples/Charts/BarCharts/ReportsBarChart/configs";
 
-function ReportsBarChart({ color, title, description, chart, items }) {
+function ReportsBarChart({ color = "dark", title, description = "", chart, items = [] }) {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   const renderItems = items.map(({ icon, label, progress }) => (
@@ -87,13 +72,6 @@ function ReportsBarChart({ color, title, description, chart, items }) {
     </Card>
   );
 }
-
-// Setting default values for the props of ReportsBarChart
-ReportsBarChart.defaultProps = {
-  color: "dark",
-  description: "",
-  items: [],
-};
 
 // Typechecking props for the ReportsBarChart
 ReportsBarChart.propTypes = {

@@ -245,7 +245,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    // type: "collapse",
     name: "Sign In",
     key: "sign-in",
     route: "/authentication/sign-in",
@@ -255,7 +255,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    // type: "collapse",
     name: "Sign Up",
     key: "sign-up",
     route: "/authentication/sign-up",
@@ -265,7 +265,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    // type: "collapse",
     name: "Forget Password",
     key: "forget-pass",
     route: "/authentication/forget-pass",
@@ -275,7 +275,7 @@ const routes = [
     noCollapse: true,
   },
   {
-    type: "collapse",
+    // type: "collapse",
     name: "Reset Password",
     key: "reset-password",
     route: "/reset-password",

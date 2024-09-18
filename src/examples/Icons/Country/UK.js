@@ -2,14 +2,9 @@
 import PropTypes from "prop-types";
 import USAICON from "assets/icons/united-kingdom.png";
 
-function UKFlag({ size }) {
+function UKFlag({ size = "16px" }) {
   return <img src={USAICON} alt="USA Flag" width={size} height={size} />;
 }
-
-// Setting default values for the props of UKFlag
-UKFlag.defaultProps = {
-  size: "16px",
-};
 
 // Typechecking props for the UKFlag
 UKFlag.propTypes = {

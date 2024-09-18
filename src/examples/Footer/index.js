@@ -11,7 +11,15 @@ import SoftTypography from "components/SoftTypography";
 // Hoscoo React base styles
 import typography from "assets/theme/base/typography";
 
-function Footer({ company, links }) {
+function Footer({
+  company = { href: "https://www.hoscoo.com/", name: "Hoscoo" },
+  links = [
+    { href: "https://www.hoscoo.com/", name: "Hoscoo" },
+    { href: "https://www.hoscoo.com/presentation", name: "About Us" },
+    { href: "https://www.hoscoo.com/blog", name: "Blog" },
+    { href: "https://www.hoscoo.com/license", name: "License" },
+  ],
+}) {
   const { href, name } = company;
   const { size } = typography;
 
@@ -80,17 +88,6 @@ function Footer({ company, links }) {
     </SoftBox>
   );
 }
-
-// Setting default values for the props of Footer
-Footer.defaultProps = {
-  company: { href: "https://www.hoscoo.com/", name: "Hoscoo" },
-  links: [
-    { href: "https://www.hoscoo.com/", name: "Hoscoo" },
-    { href: "https://www.hoscoo.com/presentation", name: "About Us" },
-    { href: "https://www.hoscoo.com/blog", name: "Blog" },
-    { href: "https://www.hoscoo.com/license", name: "License" },
-  ],
-};
 
 // Typechecking props for the Footer
 Footer.propTypes = {

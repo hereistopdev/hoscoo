@@ -28,6 +28,7 @@ import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 // Hoscoo React context
 import { useSoftUIController, setMiniSidenav } from "context";
 import { Typography } from "@mui/material";
+import useAuth from "store/useAuth";
 
 function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
   const [controller, dispatch] = useSoftUIController();
@@ -35,6 +36,8 @@ function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
   const location = useLocation();
   const { pathname } = location;
   const collapseName = pathname.split("/").slice(1)[0];
+
+  const { loading } = useAuth();
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
@@ -114,6 +117,8 @@ function Sidenav({ color = "info", brand = "", brandName, routes, ...rest }) {
       return returnValue;
     }
   );
+
+  if (loading) return <></>;
 
   return (
     <SidenavRoot {...rest} variant="permanent" ownerState={{ transparentSidenav, miniSidenav }}>
