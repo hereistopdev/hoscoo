@@ -58,7 +58,7 @@ function BankList() {
       <SoftBox p={2}>
         <Grid container spacing={3}>
           {bankData.map((bank, index) => {
-            return <CardItem card={bank} key={bank.number} isBank={true} index={index} />;
+            return <CardItem card={bank} key={index} isBank={true} index={index} />;
           })}
         </Grid>
       </SoftBox>

@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from "react";
 
 // react-router-dom components
@@ -27,7 +12,7 @@ import SoftBox from "components/SoftBox";
 // Hoscoo React context
 import { useSoftUIController, setLayout } from "context";
 
-function PageLayout({ background, children }) {
+function PageLayout({ background = "default", children }) {
   const [, dispatch] = useSoftUIController();
   const { pathname } = useLocation();
 
@@ -47,11 +32,6 @@ function PageLayout({ background, children }) {
     </SoftBox>
   );
 }
-
-// Setting default values for the props for PageLayout
-PageLayout.defaultProps = {
-  background: "default",
-};
 
 // Typechecking props for the PageLayout
 PageLayout.propTypes = {

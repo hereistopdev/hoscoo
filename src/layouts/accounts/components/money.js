@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import SoftTypography from "components/SoftTypography";
 import formatMoney from "utils/money";
 
-function Money({ amount, currency, fontSize }) {
+function Money({ amount = 0, currency = "USD", fontSize = 14 }) {
   return (
     <SoftTypography fontSize={fontSize} color="black" fontWeight="bold">
       {formatMoney(amount, currency)}
@@ -18,13 +18,6 @@ Money.propTypes = {
   amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   currency: PropTypes.string.isRequired,
   fontSize: PropTypes.number.isRequired,
-};
-
-// Default props
-Money.defaultProps = {
-  amount: 0,
-  currency: "USD",
-  fontSize: 14,
 };
 
 export default Money;

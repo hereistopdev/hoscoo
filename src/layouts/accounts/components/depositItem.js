@@ -13,7 +13,14 @@ import depositIcon from "assets/icons/deposit.svg";
 
 import borders from "assets/theme/base/borders";
 
-function DepositItem({ name, rate, balance, accured_interest, date, viewMode }) {
+function DepositItem({
+  name = 0,
+  rate = "1.5",
+  balance = "234.234",
+  accured_interest = "123.12",
+  date = "20 Sep 22",
+  viewMode = "list",
+}) {
   const { borderWidth, borderColor } = borders;
   return (
     <SoftBox>
@@ -176,16 +183,6 @@ DepositItem.propTypes = {
   accured_interest: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   date: PropTypes.string.isRequired,
   viewMode: PropTypes.string.isRequired,
-};
-
-// Default props
-DepositItem.defaultProps = {
-  name: 0,
-  rate: "1.5",
-  balance: "234.234",
-  accured_interest: "123.12",
-  date: "20 Sep 22",
-  viewMode: "list",
 };
 
 export default DepositItem;

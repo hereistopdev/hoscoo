@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { forwardRef } from "react";
 
 // prop-types is a library for typechecking of props
@@ -24,30 +9,24 @@ import SoftTypography from "components/SoftTypography";
 // Custom styles for SoftProgress
 import SoftProgressRoot from "components/SoftProgress/SoftProgressRoot";
 
-const SoftProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) => (
-  <>
-    {label && (
-      <SoftTypography variant="button" fontWeight="medium" color="text">
-        {value}%
-      </SoftTypography>
-    )}
-    <SoftProgressRoot
-      {...rest}
-      ref={ref}
-      variant="determinate"
-      value={value}
-      ownerState={{ color, value, variant }}
-    />
-  </>
-));
-
-// Setting default values for the props of SoftProgress
-SoftProgress.defaultProps = {
-  variant: "contained",
-  color: "info",
-  value: 0,
-  label: false,
-};
+const SoftProgress = forwardRef(
+  ({ variant = "contained", color = "info", value = 0, label = false, ...rest }, ref) => (
+    <>
+      {label && (
+        <SoftTypography variant="button" fontWeight="medium" color="text">
+          {value}%
+        </SoftTypography>
+      )}
+      <SoftProgressRoot
+        {...rest}
+        ref={ref}
+        variant="determinate"
+        value={value}
+        ownerState={{ color, value, variant }}
+      />
+    </>
+  )
+);
 
 // Typechecking props for the SoftProgress
 SoftProgress.propTypes = {

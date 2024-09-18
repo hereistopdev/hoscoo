@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
 
 // porp-types is a library for typechecking of props
@@ -34,7 +19,7 @@ import configs from "examples/Charts/BarCharts/HorizontalBarChart/configs";
 // Hoscoo React base styles
 import colors from "assets/theme/base/colors";
 
-function HorizontalBarChart({ title, description, height, chart }) {
+function HorizontalBarChart({ title = "", description = "", height = "19.125rem", chart }) {
   const chartDatasets = chart.datasets
     ? chart.datasets.map((dataset) => ({
         ...dataset,
@@ -80,13 +65,6 @@ function HorizontalBarChart({ title, description, height, chart }) {
 
   return title || description ? <Card>{renderChart}</Card> : renderChart;
 }
-
-// Setting default values for the props of HorizontalBarChart
-HorizontalBarChart.defaultProps = {
-  title: "",
-  description: "",
-  height: "19.125rem",
-};
 
 // Typechecking props for the HorizontalBarChart
 HorizontalBarChart.propTypes = {

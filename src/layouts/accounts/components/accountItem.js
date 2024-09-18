@@ -13,7 +13,7 @@ import Money from "./money";
 import borders from "assets/theme/base/borders";
 import convertCurrencyToCountryCode from "utils/flag";
 
-const StyledSoftButton = ({ onClick, children, style, isActive }) => (
+const StyledSoftButton = ({ onClick, children, style = {}, isActive = false }) => (
   <SoftButton
     style={{
       backgroundColor: isActive ? "black" : "transparent",
@@ -38,12 +38,14 @@ StyledSoftButton.propTypes = {
   isActive: PropTypes.bool, // Add isActive prop
 };
 
-StyledSoftButton.defaultProps = {
-  style: {},
-  isActive: false, // Default value for isActive
-};
-
-function AccountItem({ number, currency, balance, blocked_amount, status, viewMode }) {
+function AccountItem({
+  number = 0,
+  currency = "USD",
+  balance = "234.234",
+  blocked_amount = "123.12",
+  status = "Active",
+  viewMode = "list",
+}) {
   const { borderWidth, borderColor } = borders;
   const [visible, setVisible] = useState(false);
   const [activeAction, setActiveAction] = useState("delete");
@@ -233,16 +235,6 @@ AccountItem.propTypes = {
   blocked_amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   status: PropTypes.string.isRequired,
   viewMode: PropTypes.string.isRequired,
-};
-
-// Default props
-AccountItem.defaultProps = {
-  number: 0,
-  currency: "USD",
-  balance: "234.234",
-  blocked_amount: "123.12",
-  status: "Active",
-  viewMode: "list",
 };
 
 export default AccountItem;

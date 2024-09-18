@@ -12,7 +12,7 @@ import SoftTypography from "components/SoftTypography";
 import curved14 from "assets/images/curved-images/white-curved.jpeg";
 import masterCardLogo from "assets/images/logos/mastercard.png";
 
-function BankCard({ color, card }) {
+function BankCard({ color = "dark", card }) {
   console.log("bankcard", card);
   const numbers = [...`${card.number}`];
 
@@ -86,11 +86,6 @@ function BankCard({ color, card }) {
     </Card>
   );
 }
-
-// Setting default values for the props of MasterCard
-BankCard.defaultProps = {
-  color: "dark",
-};
 
 // Typechecking props for the BankCard
 BankCard.propTypes = {

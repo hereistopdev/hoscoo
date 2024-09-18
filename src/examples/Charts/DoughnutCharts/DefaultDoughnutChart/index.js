@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useMemo } from "react";
 
 // porp-types is a library for typechecking of props
@@ -31,7 +16,7 @@ import SoftTypography from "components/SoftTypography";
 // DefaultDoughnutChart configurations
 import configs from "examples/Charts/DoughnutCharts/DefaultDoughnutChart/configs";
 
-function DefaultDoughnutChart({ title, description, height, chart }) {
+function DefaultDoughnutChart({ title = "", description = "", height = "19.125rem", chart }) {
   const { data, options } = configs(chart.labels || [], chart.datasets || {}, chart.cutout);
 
   const renderChart = (
@@ -63,13 +48,6 @@ function DefaultDoughnutChart({ title, description, height, chart }) {
 
   return title || description ? <Card>{renderChart}</Card> : renderChart;
 }
-
-// Setting default values for the props of DefaultDoughnutChart
-DefaultDoughnutChart.defaultProps = {
-  title: "",
-  description: "",
-  height: "19.125rem",
-};
 
 // Typechecking props for the DefaultDoughnutChart
 DefaultDoughnutChart.propTypes = {

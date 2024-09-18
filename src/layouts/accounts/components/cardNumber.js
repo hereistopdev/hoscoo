@@ -7,7 +7,7 @@ import SoftTypography from "components/SoftTypography";
 import formatCardNumber from "utils/cardNumber";
 import { useEffect } from "react";
 
-function CardNumber({ number, fontSize, hidden, half }) {
+function CardNumber({ number = 1111111111111111, fontSize = 14, hidden = true, half = false }) {
   const t = (evt) => {};
   useEffect(() => {
     window.addEventListener("resize", t);
@@ -27,14 +27,6 @@ CardNumber.propTypes = {
   fontSize: PropTypes.number.isRequired,
   hidden: PropTypes.bool.isRequired,
   half: PropTypes.bool.isRequired,
-};
-
-// Default props
-CardNumber.defaultProps = {
-  number: 1111111111111111,
-  fontSize: 14,
-  hidden: true,
-  half: false,
 };
 
 export default CardNumber;

@@ -13,7 +13,14 @@ import creditIcon from "assets/icons/credit.svg";
 
 import borders from "assets/theme/base/borders";
 
-function CreditItem({ name, rate, credit_amount, paid_amount, date, viewMode }) {
+function CreditItem({
+  name = 0,
+  rate = "1.5",
+  credit_amount = "234.234",
+  paid_amount = "123.12",
+  date = "20 Sep 22",
+  viewMode = "list",
+}) {
   const { borderWidth, borderColor } = borders;
   return (
     <SoftBox>
@@ -109,16 +116,6 @@ CreditItem.propTypes = {
   paid_amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   date: PropTypes.string.isRequired,
   viewMode: PropTypes.string.isRequired,
-};
-
-// Default props
-CreditItem.defaultProps = {
-  name: 0,
-  rate: "1.5",
-  credit_amount: "234.234",
-  paid_amount: "123.12",
-  date: "20 Sep 22",
-  viewMode: "list",
 };
 
 export default CreditItem;

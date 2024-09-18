@@ -12,7 +12,7 @@ import SoftTypography from "components/SoftTypography";
 import curved14 from "assets/images/curved-images/curved14.jpg";
 import masterCardLogo from "assets/images/logos/mastercard.png";
 
-function MasterCard({ color, card }) {
+function MasterCard({ color = "dark", card }) {
   console.log("mastercard", card);
   const numbers = [...`${card.number}`];
 
@@ -85,11 +85,6 @@ function MasterCard({ color, card }) {
     </Card>
   );
 }
-
-// Setting default values for the props of MasterCard
-MasterCard.defaultProps = {
-  color: "dark",
-};
 
 // Typechecking props for the MasterCard
 MasterCard.propTypes = {

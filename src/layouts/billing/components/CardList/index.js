@@ -80,7 +80,7 @@ function CardList() {
       <SoftBox p={2}>
         <Grid container spacing={3}>
           {cardData.map((card, index) => {
-            return <CardItem key={card.number} card={card} isBank={false} index={index} />;
+            return <CardItem key={index} card={card} isBank={false} index={index} />;
           })}
         </Grid>
       </SoftBox>

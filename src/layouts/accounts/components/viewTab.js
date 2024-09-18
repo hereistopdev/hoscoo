@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 
-const StyledSoftButton = ({ onClick, children, style, isActive }) => (
+const StyledSoftButton = ({ onClick, children, style = {}, isActive = false }) => (
   <SoftButton
     style={{
       backgroundColor: isActive ? "black" : "transparent",
@@ -26,11 +26,6 @@ StyledSoftButton.propTypes = {
   children: PropTypes.node.isRequired,
   style: PropTypes.object,
   isActive: PropTypes.bool, // Add isActive prop
-};
-
-StyledSoftButton.defaultProps = {
-  style: {},
-  isActive: false, // Default value for isActive
 };
 
 function ViewTab({ activeView, onViewChange }) {

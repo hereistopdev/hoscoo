@@ -12,7 +12,7 @@ import Money from "./money";
 const handleClick = () => {
   alert(1);
 };
-function TotalBalance({ amount, currency }) {
+function TotalBalance({ amount = 0, currency = "$" }) {
   return (
     <SoftBox>
       <Money amount={amount} currency={currency} fontSize={32}></Money>
@@ -40,12 +40,6 @@ function TotalBalance({ amount, currency }) {
 TotalBalance.propTypes = {
   amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   currency: PropTypes.string.isRequired,
-};
-
-// Default props
-TotalBalance.defaultProps = {
-  amount: 0,
-  currency: "$",
 };
 
 export default TotalBalance;

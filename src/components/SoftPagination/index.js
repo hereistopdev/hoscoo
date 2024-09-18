@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { forwardRef, createContext, useContext, useMemo } from "react";
 
 // prop-types is a library for typechecking of props
@@ -28,7 +13,18 @@ import SoftPaginationItemRoot from "components/SoftPagination/SoftPaginationItem
 const Context = createContext(null);
 
 const SoftPagination = forwardRef(
-  ({ item, variant, color, size, active, children, ...rest }, ref) => {
+  (
+    {
+      item = false,
+      variant = "gradient",
+      color = "info",
+      size = "medium",
+      active = false,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
     const context = item ? useContext(Context) : null;
     const paginationSize = context ? context.size : null;
     const value = useMemo(() => ({ variant, color, size }), [variant, color, size]);
@@ -61,15 +57,6 @@ const SoftPagination = forwardRef(
     );
   }
 );
-
-// Setting default values for the props of SoftPagination
-SoftPagination.defaultProps = {
-  item: false,
-  variant: "gradient",
-  color: "info",
-  size: "medium",
-  active: false,
-};
 
 // Typechecking props for the SoftPagination
 SoftPagination.propTypes = {

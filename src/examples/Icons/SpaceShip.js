@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // Hoscoo React base styles
 import colors from "assets/theme/base/colors";
 
-function SpaceShip({ color, size }) {
+function SpaceShip({ color = "dark", size = "16px" }) {
   return (
     <svg
       width={size}
@@ -45,12 +45,6 @@ function SpaceShip({ color, size }) {
     </svg>
   );
 }
-
-// Setting default values for the props of SpaceShip
-SpaceShip.defaultProps = {
-  color: "dark",
-  size: "16px",
-};
 
 // Typechecking props for the SpaceShip
 SpaceShip.propTypes = {

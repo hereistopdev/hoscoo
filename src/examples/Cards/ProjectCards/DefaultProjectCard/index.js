@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
 import { Link } from "react-router-dom";
 
 // prop-types is a library for typechecking of props
@@ -30,7 +14,7 @@ import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import SoftAvatar from "components/SoftAvatar";
 
-function DefaultProjectCard({ image, label, title, description, action, authors }) {
+function DefaultProjectCard({ image, label, title, description, action, authors = [] }) {
   const renderAuthors = authors.map(({ image: media, name }) => (
     <Tooltip key={name} title={name} placement="bottom">
       <SoftAvatar
@@ -144,11 +128,6 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
     </Card>
   );
 }
-
-// Setting default values for the props of DefaultProjectCard
-DefaultProjectCard.defaultProps = {
-  authors: [],
-};
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {

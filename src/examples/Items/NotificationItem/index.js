@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { forwardRef } from "react";
 
 // prop-types is a library for typechecking of props.
@@ -29,7 +14,7 @@ import SoftTypography from "components/SoftTypography";
 // custom styles for the NotificationItem
 import { menuItem, menuImage } from "examples/Items/NotificationItem/styles";
 
-const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref) => (
+const NotificationItem = forwardRef(({ color = "dark", image, title, date, ...rest }, ref) => (
   <MenuItem {...rest} ref={ref} sx={(theme) => menuItem(theme)}>
     <SoftBox
       width="2.25rem"
@@ -70,11 +55,6 @@ const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref
     </SoftBox>
   </MenuItem>
 ));
-
-// Setting default values for the props of NotificationItem
-NotificationItem.defaultProps = {
-  color: "dark",
-};
 
 // Typechecking props for the NotificationItem
 NotificationItem.propTypes = {

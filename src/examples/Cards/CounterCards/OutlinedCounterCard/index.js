@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-countup components
 import CountUp from "react-countup";
 
 // prop-types is a library for typechecking of props
@@ -27,7 +11,7 @@ import SoftTypography from "components/SoftTypography";
 import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
 
-function OutlinedCounterCard({ color, count, title, prefix, suffix }) {
+function OutlinedCounterCard({ color = "info", count, title, prefix = "", suffix = "" }) {
   const { secondary } = colors;
   const { borderWidth } = borders;
 
@@ -59,13 +43,6 @@ function OutlinedCounterCard({ color, count, title, prefix, suffix }) {
     </SoftBox>
   );
 }
-
-// Setting default values for the props of OutlinedCounterCard
-OutlinedCounterCard.defaultProps = {
-  color: "info",
-  prefix: "",
-  suffix: "",
-};
 
 // Typechecking props for the BlogCard
 OutlinedCounterCard.propTypes = {

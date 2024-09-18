@@ -7,7 +7,7 @@ import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-function Invoice({ date, id, price, noGutter }) {
+function Invoice({ date, id, price, noGutter = false }) {
   return (
     <SoftBox
       component="li"
@@ -40,11 +40,6 @@ function Invoice({ date, id, price, noGutter }) {
     </SoftBox>
   );
 }
-
-// Setting default values for the props of Invoice
-Invoice.defaultProps = {
-  noGutter: false,
-};
 
 // Typechecking props for the Invoice
 Invoice.propTypes = {

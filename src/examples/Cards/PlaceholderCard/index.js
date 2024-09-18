@@ -8,7 +8,7 @@ import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-function PlaceholderCard({ icon, title, hasBorder, outlined }) {
+function PlaceholderCard({ icon = "add", title, hasBorder = false, outlined = false }) {
   return (
     <Card
       raised
@@ -39,13 +39,6 @@ function PlaceholderCard({ icon, title, hasBorder, outlined }) {
     </Card>
   );
 }
-
-// Setting default values for the props of PlaceholderCard
-PlaceholderCard.defaultProps = {
-  icon: "add",
-  hasBorder: false,
-  outlined: false,
-};
 
 // Typechecking props for the PlaceholderCard
 PlaceholderCard.propTypes = {

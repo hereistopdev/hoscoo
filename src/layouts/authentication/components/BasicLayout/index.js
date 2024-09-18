@@ -14,7 +14,7 @@ import PageLayout from "examples/LayoutContainers/PageLayout";
 // Authentication layout components
 import Footer from "layouts/authentication/components/Footer";
 
-function BasicLayout({ title, description, image, children }) {
+function BasicLayout({ title = "", description = "", image, children }) {
   return (
     <PageLayout>
       {/* <DefaultNavbar
@@ -72,12 +72,6 @@ function BasicLayout({ title, description, image, children }) {
     </PageLayout>
   );
 }
-
-// Setting default values for the props of BasicLayout
-BasicLayout.defaultProps = {
-  title: "",
-  description: "",
-};
 
 // Typechecking props for the BasicLayout
 BasicLayout.propTypes = {
