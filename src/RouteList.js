@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
-import useAuth from "store/useAuth";
-
+import useAuth from "store/useAuth"; // Assuming this is where your AuthContext or hook is
 import PropTypes from "prop-types";
-import { fetchUser } from "services/api";
 
 const RouteList = ({ routes }) => {
-  const [userid, setUserID] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, loading } = useAuth(); // Now you also use `loading`
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      fetchUser(token)
-        .then((response) => {
-          console.log("res", response.data.userId);
-          setUserID(response.data.userId);
-          setLoading(false);
-        })
-        .catch(() => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
-  }, []);
+    console.log("Route List", user, loading);
+  }, [user, loading]);
 
+  // Prevent rendering the routes until loading is done
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Add your loader here
   }
 
   const renderRoutes = (allRoutes) =>
@@ -37,7 +22,7 @@ const RouteList = ({ routes }) => {
       }
 
       if (route.route) {
-        if (route.protected && !userid) {
+        if (route.protected && !user) {
           return (
             <Route
               path={route.route}

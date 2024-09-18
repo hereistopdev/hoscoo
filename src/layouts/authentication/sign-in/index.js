@@ -37,6 +37,8 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("click sign in");
+
     setLoading(true);
 
     try {
