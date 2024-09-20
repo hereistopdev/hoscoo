@@ -1,19 +1,3 @@
-/**
-=========================================================
-* Hoscoo React - v4.0.1
-=========================================================
-
-* Product Page: https://www.hoscoo.com
-* Copyright 2024 Hoscoo (https://www.hoscoo.com)
-
-Coded by www.hoscoo.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-routers components
 import { Link } from "react-router-dom";
 
 // prop-types is library for typechecking of props
@@ -27,6 +11,7 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 import SoftButton from "components/SoftButton";
+import IframeComponent from "examples/Iframe";
 
 function ProfilesList({ title, profiles }) {
   const renderProfiles = profiles.map(({ image, name, description, action }) => (
@@ -78,6 +63,9 @@ function ProfilesList({ title, profiles }) {
       <SoftBox p={2}>
         <SoftBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
           {renderProfiles}
+          <SoftBox component="li" display="flex" alignItems="center" py={1} mb={1}>
+            <IframeComponent />
+          </SoftBox>
         </SoftBox>
       </SoftBox>
     </Card>
