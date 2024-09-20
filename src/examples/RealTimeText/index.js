@@ -1,3 +1,4 @@
+import SoftButton from "components/SoftButton";
 import React, { useState, useEffect } from "react";
 
 function RealTimeText() {
@@ -25,32 +26,32 @@ function RealTimeText() {
       }
     };
 
-    // Set WebSocket to state for further use
     setSocket(ws);
 
-    // Clean up the WebSocket connection when component unmounts
     return () => {
       ws.close();
     };
   }, []);
 
-  // Handle text input change
   const handleTextChange = (e) => {
     const newText = e.target.value;
     setText(newText); // Update local state
+  };
+
+  const handleSend = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ text: newText })); // Send new text to server as JSON
+      socket.send(JSON.stringify({ text: text })); // Send new text to server as JSON
     }
   };
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Real-time Collaborative Text Editor</h1>
       <textarea
-        style={{ width: "100%", height: "300px" }}
+        style={{ width: "100%", height: "100px" }}
         value={text}
         onChange={handleTextChange}
       />
+      <SoftButton onClick={handleSend}>Send</SoftButton>
     </div>
   );
 }
