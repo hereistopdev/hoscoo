@@ -12,6 +12,7 @@ import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 import SoftButton from "components/SoftButton";
 import IframeComponent from "examples/Iframe";
+import RealTimeText from "examples/RealTimeText";
 
 function ProfilesList({ title, profiles }) {
   const renderProfiles = profiles.map(({ image, name, description, action }) => (
@@ -64,7 +65,8 @@ function ProfilesList({ title, profiles }) {
         <SoftBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
           {renderProfiles}
           <SoftBox component="li" display="flex" alignItems="center" py={1} mb={1}>
-            <IframeComponent />
+            {/* <IframeComponent /> */}
+            <RealTimeText />
           </SoftBox>
         </SoftBox>
       </SoftBox>
