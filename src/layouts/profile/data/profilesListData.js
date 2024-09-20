@@ -43,17 +43,6 @@ const profilesListData = [
       label: "reply",
     },
   },
-  {
-    image: ivana,
-    name: "Ivanna",
-    description: "About files I can..",
-    action: {
-      type: "internal",
-      route: "/pages/profile/profile-overview",
-      color: "info",
-      label: "reply",
-    },
-  },
 ];
 
 export default profilesListData;
