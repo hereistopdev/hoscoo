@@ -6,7 +6,7 @@ function RealTimeText() {
 
   useEffect(() => {
     // Create WebSocket connection
-    const ws = new WebSocket("wss://hoscoo.onrender.com:3000"); //("ws://localhost:3000");
+    const ws = new WebSocket("wss://hoscoo.onrender.com"); //("ws://localhost:3000");
 
     // Set up WebSocket connection
     ws.onopen = () => {
