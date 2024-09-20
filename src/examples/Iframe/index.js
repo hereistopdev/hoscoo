@@ -6,6 +6,7 @@ const IframeComponent = ({ src, title, width = "120%", height = "300px" }) => {
   const temp = "https://qtext.io";
   const [url, setUrl] = useState();
   const [text, setText] = useState("");
+  const [roomid, setRoomId] = useState("");
 
   function generateRandomString() {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -22,13 +23,12 @@ const IframeComponent = ({ src, title, width = "120%", height = "300px" }) => {
 
   const handleClick = () => {
     const id = generateRandomString();
-    console.log(temp + "/" + id);
+    setRoomId(id);
     setUrl(temp + "/" + id);
-    console.log("hi");
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(url).then(
+    navigator.clipboard.writeText(roomid).then(
       () => {
         console.log("Text copied to clipboard");
       },
@@ -39,8 +39,7 @@ const IframeComponent = ({ src, title, width = "120%", height = "300px" }) => {
   };
 
   const handleJoin = () => {
-    console.log(text);
-    setUrl(text);
+    setUrl(temp + "/" + text);
   };
 
   return (
