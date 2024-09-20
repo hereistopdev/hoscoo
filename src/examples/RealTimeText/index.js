@@ -45,7 +45,7 @@ function RealTimeText() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ width: "100%" }}>
       <textarea
         style={{ width: "100%", height: "100px" }}
         value={text}
