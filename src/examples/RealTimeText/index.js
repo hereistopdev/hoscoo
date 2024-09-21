@@ -6,14 +6,33 @@ import React, { useState, useEffect } from "react";
 import ivana from "assets/images/ivana-square.jpg";
 import { Link } from "react-router-dom";
 
+function generateRandomString() {
+  const characters = "abcdefghijklmnopqrstuvwxyz";
+  let result = "";
+  const length = 4;
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    result += characters[randomIndex];
+  }
+
+  // result[0] = result[0].toUpperCase();
+
+  return result;
+}
+
 function RealTimeText() {
   const [text, setText] = useState(""); // Local state for text
   const [socket, setSocket] = useState(null); // WebSocket connection
   const [oldtext, setOldText] = useState("This is the test sent...");
+  const [isTyping, setIsTyping] = useState(false); // Track if someone is typing
+  const [typingUser, setTypingUser] = useState(""); // Track who is typing
+  const [tempuser, setTempUser] = useState(generateRandomString());
 
   useEffect(() => {
     // Create WebSocket connection
-    const ws = new WebSocket("wss://hoscoo.onrender.com"); //("ws://localhost:3000");
+    const ws = new WebSocket("wss://hoscoo.onrender.com");
+    // const ws = new WebSocket("ws://localhost:5000");
 
     // Set up WebSocket connection
     ws.onopen = () => {
@@ -25,8 +44,13 @@ function RealTimeText() {
       try {
         const receivedData = JSON.parse(event.data); // Parse incoming JSON
         if (receivedData.text) {
-          // setText(receivedData.text);
-          setOldText(receivedData.text);
+          setOldText(receivedData.text); // Update the text from the server
+        }
+        if (receivedData.typing) {
+          setIsTyping(true);
+          setTypingUser(receivedData.user); // Set the user who is typing
+        } else {
+          setIsTyping(false);
         }
       } catch (error) {
         console.error("Error parsing WebSocket message:", error);
@@ -43,13 +67,19 @@ function RealTimeText() {
   const handleTextChange = (e) => {
     const newText = e.target.value;
     setText(newText); // Update local state
+
+    // Notify the server that the user is typing
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify({ typing: true, user: tempuser })); // Send typing status
+    }
   };
 
   const handleSend = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(JSON.stringify({ text: text })); // Send new text to server as JSON
+      socket.send(JSON.stringify({ typing: false, user: tempuser })); // Notify that typing has stopped
     }
-    setText("");
+    setText(""); // Clear the input after sending
   };
 
   const demo = [
@@ -106,6 +136,11 @@ function RealTimeText() {
           </SoftBox>
         </SoftBox>
       ))}
+
+      {/* Display "User is typing..." when someone is typing */}
+      {isTyping && typingUser !== tempuser && (
+        <SoftTypography size={"10px"}>{typingUser} is typing...</SoftTypography>
+      )}
 
       <textarea
         style={{ width: "100%", height: "100px" }}
